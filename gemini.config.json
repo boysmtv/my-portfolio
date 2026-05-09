@@ -1,7 +1,0 @@
-{
-  "systemPrompt": "./ai-memory/master_prompt.md",
-  "memory": {
-    "enabled": true,
-    "file": "./ai-memory/work_log.json"
-  }
-}

@@ -23,3 +23,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# ai-agent local runtime files
+.ai-agent/

@@ -1,111 +1,137 @@
 'use client';
+
 import { motion } from 'framer-motion';
-import { X, ExternalLink, ShieldCheck, Zap, Info } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowUpRight, BriefcaseBusiness, Target, X } from 'lucide-react';
 
-interface Project {
-  title: string;
-  desc: string;
-  longDesc: string;
-  stack: string[];
-  challenges: string[];
-  images: string[];
-}
+import type { FeaturedProject } from './portfolio-data';
 
-export default function ProjectModal({ project, onClose }: { project: Project, onClose: () => void }) {
+export default function ProjectModal({
+  project,
+  onClose,
+}: {
+  project: FeaturedProject;
+  onClose: () => void;
+}) {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[1000] flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6"
     >
-      <div className="absolute inset-0 bg-black/90 backdrop-blur-xl" onClick={onClose} />
-      
-      <motion.div 
-        initial={{ scale: 0.9, y: 20, opacity: 0 }}
+      <div className="absolute inset-0 bg-slate-950/92 backdrop-blur-xl" onClick={onClose} />
+
+      <motion.div
+        initial={{ scale: 0.96, y: 18, opacity: 0 }}
         animate={{ scale: 1, y: 0, opacity: 1 }}
-        exit={{ scale: 0.9, y: 20, opacity: 0 }}
-        className="relative w-full max-w-5xl bg-surface border border-surfaceBorder rounded-[32px] overflow-hidden shadow-2xl max-h-[90vh] flex flex-col"
-        onClick={e => e.stopPropagation()}
+        exit={{ scale: 0.96, y: 18, opacity: 0 }}
+        className="relative max-h-[92vh] w-full max-w-6xl overflow-hidden rounded-[2rem] border border-white/10 bg-[#07111b] shadow-[0_35px_120px_rgba(2,6,23,0.85)]"
+        onClick={(event) => event.stopPropagation()}
       >
-        {/* Close Button */}
-        <button 
+        <button
           onClick={onClose}
-          className="absolute top-6 right-6 z-50 p-3 bg-black/50 backdrop-blur-md text-white rounded-full hover:bg-white/10 transition-all border border-white/10"
+          className="absolute right-5 top-5 z-20 rounded-full border border-white/10 bg-black/30 p-3 text-white transition hover:bg-white/10"
         >
-          <X size={24} />
+          <X size={20} />
         </button>
 
-        <div className="overflow-y-auto">
-          {/* Hero Image */}
-          <div className="relative w-full aspect-video sm:aspect-[21/9] bg-surfaceBorder">
-            <Image 
-              src={project.images[0]} 
-              alt={project.title} 
-              fill 
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface to-transparent" />
-            <div className="absolute bottom-0 left-0 p-8 sm:p-12">
-              <h2 className="text-3xl sm:text-5xl font-black text-white mb-4 leading-tight">{project.title}</h2>
-              <div className="flex flex-wrap gap-2">
-                {project.stack.map(s => (
-                  <span key={s} className="px-3 py-1 bg-primary/20 border border-primary/30 rounded-lg text-sm font-mono text-primary backdrop-blur-sm">
-                    {s}
-                  </span>
-                ))}
-              </div>
+        <div className={`absolute inset-0 bg-gradient-to-br ${project.accent}`} />
+        <div className="relative max-h-[92vh] overflow-y-auto">
+          <div className="border-b border-white/10 px-8 py-10 sm:px-12 sm:py-12">
+            <p className="mb-3 text-xs uppercase tracking-[0.3em] text-sky-200/80">{project.category}</p>
+            <h2 className="max-w-4xl text-3xl font-black leading-tight text-white sm:text-5xl">{project.title}</h2>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200/90">{project.headline}</p>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-200/80">
+              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">{project.role}</span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">{project.period}</span>
+              {project.stack.map((item) => (
+                <span key={item} className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
+                  {item}
+                </span>
+              ))}
             </div>
           </div>
 
-          <div className="p-8 sm:p-12 space-y-12">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-              <div className="lg:col-span-2 space-y-8">
-                <div>
-                  <h3 className="text-xl font-bold flex items-center gap-2 mb-4">
-                    <Info className="text-primary" size={20} /> Project Overview
-                  </h3>
-                  <p className="text-gray-400 text-lg leading-relaxed">{project.longDesc}</p>
+          <div className="grid gap-8 px-8 py-8 sm:px-12 sm:py-10 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="space-y-8">
+              <section className="rounded-[1.5rem] border border-white/10 bg-black/20 p-6">
+                <div className="mb-3 flex items-center gap-2 text-sm uppercase tracking-[0.24em] text-slate-400">
+                  <BriefcaseBusiness size={16} />
+                  Context
                 </div>
+                <p className="text-base leading-8 text-slate-200">{project.summary}</p>
+              </section>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {project.images.slice(1).map((img, i) => (
-                    <div key={i} className="relative aspect-video rounded-2xl overflow-hidden border border-surfaceBorder">
-                      <Image src={img} alt={`Gallery ${i}`} fill className="object-cover" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-8">
-                <div className="glass-panel p-6 rounded-2xl border border-surfaceBorder">
-                  <h3 className="text-lg font-bold flex items-center gap-2 mb-4 text-accent">
-                    <Zap size={20} /> Core Challenges
-                  </h3>
-                  <ul className="space-y-4">
-                    {project.challenges.map((challenge, i) => (
-                      <li key={i} className="flex gap-3 text-sm text-gray-400">
-                        <span className="text-accent">▹</span>
-                        {challenge}
+              <section className="grid gap-4 md:grid-cols-2">
+                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6">
+                  <h3 className="mb-4 text-lg font-semibold text-white">Responsibilities</h3>
+                  <ul className="space-y-3 text-sm leading-7 text-slate-300">
+                    {project.responsibilities.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-sky-300" />
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="glass-panel p-6 rounded-2xl border border-surfaceBorder">
-                  <h3 className="text-lg font-bold flex items-center gap-2 mb-4 text-primary">
-                    <ShieldCheck size={20} /> Architecture
-                  </h3>
-                  <p className="text-sm text-gray-400 leading-relaxed">
-                    Built using Clean Architecture principles, ensuring modularity and scalability for high-load financial transactions.
-                  </p>
+                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6">
+                  <h3 className="mb-4 text-lg font-semibold text-white">Challenges</h3>
+                  <ul className="space-y-3 text-sm leading-7 text-slate-300">
+                    {project.challenges.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+              </section>
 
-                <button className="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all flex items-center justify-center gap-2">
-                  Launch Project <ExternalLink size={18} />
-                </button>
-              </div>
+              <section className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6">
+                <div className="mb-3 flex items-center gap-2 text-sm uppercase tracking-[0.24em] text-slate-400">
+                  <Target size={16} />
+                  Engineering decisions
+                </div>
+                <div className="space-y-4 text-sm leading-7 text-slate-300">
+                  {project.decisions.map((item) => (
+                    <p key={item}>{item}</p>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            <div className="space-y-6">
+              <section className="rounded-[1.5rem] border border-white/10 bg-slate-950/65 p-6">
+                <h3 className="mb-5 text-lg font-semibold text-white">Impact highlights</h3>
+                <div className="space-y-4">
+                  {project.impact.map((item) => (
+                    <div key={item} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4 text-sm leading-7 text-slate-300">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section className="rounded-[1.5rem] border border-white/10 bg-slate-950/65 p-6">
+                <h3 className="mb-5 text-lg font-semibold text-white">Signal metrics</h3>
+                <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                  {project.metrics.map((item) => (
+                    <div key={item.label} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
+                      <div className="text-xl font-bold text-white">{item.value}</div>
+                      <div className="mt-1 text-xs uppercase tracking-[0.24em] text-slate-500">{item.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <a
+                href={project.contactHref}
+                className="primary-button w-full justify-center"
+              >
+                Discuss this project
+                <ArrowUpRight size={18} />
+              </a>
             </div>
           </div>
         </div>

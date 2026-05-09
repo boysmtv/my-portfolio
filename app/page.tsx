@@ -15,18 +15,27 @@ export default function Home() {
   return (
     <div className="w-full">
       <Hero />
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 py-24 space-y-32">
-        <Summary />
-        <Experience />
-        <Projects />
-        <CaseStudy />
-        <Architecture />
-        <TechStack />
-        <Certifications />
-        <Education />
-        <Organizations />
-        <Achievements />
-        <EngineeringApproach />
+      <div className="mx-auto max-w-7xl px-6 pb-28 sm:px-10 lg:px-14">
+        <div className="space-y-10">
+          <Summary />
+          <Projects />
+          <CaseStudy />
+        </div>
+
+        <div className="mt-20 grid gap-10 xl:grid-cols-[1.05fr_0.95fr]">
+          <div className="space-y-10">
+            <Experience />
+            <Architecture />
+            <EngineeringApproach />
+          </div>
+          <div className="space-y-10">
+            <TechStack />
+            <Achievements />
+            <Certifications />
+            <Education />
+            <Organizations />
+          </div>
+        </div>
       </div>
     </div>
   );

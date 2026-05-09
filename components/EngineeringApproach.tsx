@@ -1,29 +1,46 @@
 'use client';
-import { Activity, ShieldCheck, Zap, Users } from 'lucide-react';
+
+import { Activity, ShieldCheck, Users, Zap } from 'lucide-react';
 
 const approaches = [
-  { icon: <Activity className="text-blue-400"/>, title: "Scalable Systems", desc: "Designing architectures that gracefully handle 10x traffic spikes without rewriting the core business logic." },
-  { icon: <Zap className="text-yellow-400"/>, title: "Performance First", desc: "Profiling memory leaks, optimizing battery usage on Android, and reducing DB query latency on the backend." },
-  { icon: <ShieldCheck className="text-green-400"/>, title: "System Reliability", desc: "Implementing robust error boundaries, graceful degradation, and comprehensive logging for rapid production debugging." },
-  { icon: <Users className="text-purple-400"/>, title: "Team Collaboration", desc: "Bridging the gap between Mobile and Backend teams. Mentoring juniors and setting engineering standards." }
+  {
+    title: 'Design for change',
+    desc: 'I try to structure systems so future product changes cost less, not more.',
+    icon: Activity,
+  },
+  {
+    title: 'Optimize for runtime calm',
+    desc: 'A system that only works when nothing goes wrong is not finished engineering.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Keep performance practical',
+    desc: 'The goal is not abstract speed, but predictable user and operational experience.',
+    icon: Zap,
+  },
+  {
+    title: 'Reduce team friction',
+    desc: 'Architecture should help teams collaborate, not make each delivery change feel expensive.',
+    icon: Users,
+  },
 ];
 
 export default function EngineeringApproach() {
   return (
-    <section id="approach" className="relative pb-24">
-      <div className="mb-12 text-center">
-        <h2 className="text-3xl font-bold mb-4">Engineering Approach</h2>
-        <p className="text-gray-400 max-w-2xl mx-auto">Beyond writing code, I focus on system health, team velocity, and delivering resilient products.</p>
+    <section id="approach" className="space-y-6 py-12">
+      <div className="space-y-3">
+        <p className="section-kicker">Approach</p>
+        <h2 className="text-3xl font-black text-white">How I like to work when the system actually matters.</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {approaches.map((app, i) => (
-          <div key={i} className="flex gap-4 p-6 glass-panel rounded-xl border border-surfaceBorder hover:border-primary/50 transition-colors">
-            <div className="p-3 bg-surface rounded-lg h-fit">{app.icon}</div>
-            <div>
-              <h3 className="text-xl font-semibold mb-2">{app.title}</h3>
-              <p className="text-gray-400 leading-relaxed text-sm">{app.desc}</p>
+      <div className="grid gap-4 md:grid-cols-2">
+        {approaches.map(({ title, desc, icon: Icon }) => (
+          <div key={title} className="section-panel">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-sky-200">
+              <Icon size={20} />
             </div>
+            <h3 className="mb-2 text-xl font-semibold text-white">{title}</h3>
+            <p className="text-sm leading-7 text-slate-300">{desc}</p>
           </div>
         ))}
       </div>

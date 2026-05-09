@@ -1,15 +1,16 @@
 'use client';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { Github, Linkedin, Mail, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
 const navLinks = [
-  { name: 'Summary', href: '#summary' },
+  { name: 'Profile', href: '#summary' },
+  { name: 'Work', href: '#projects' },
+  { name: 'Case study', href: '#case-study' },
   { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
   { name: 'Architecture', href: '#architecture' },
-  { name: 'Certificates', href: '#certifications' },
 ];
 
 export default function Navbar() {
@@ -17,80 +18,76 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 50);
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    setIsScrolled(latest > 24);
   });
 
   return (
-    <motion.nav 
-      initial={{ y: -100 }}
+    <motion.nav
+      initial={{ y: -88 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-[100] transition-all duration-300 ${
-        isScrolled ? 'glass-panel h-16 border-b' : 'h-24 bg-transparent border-none'
+      className={`fixed inset-x-0 top-0 z-[120] transition-all duration-300 ${
+        isScrolled ? 'border-b border-white/10 bg-slate-950/75 backdrop-blur-2xl' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
-        <Link href="/" className="font-bold text-xl tracking-tighter flex gap-2 items-center group">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-accent flex items-center justify-center text-white text-sm font-bold group-hover:scale-110 transition-transform">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 sm:px-10 lg:px-14">
+        <Link href="/" className="group flex items-center gap-4">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-sky-400/30 bg-[linear-gradient(145deg,rgba(56,189,248,0.22),rgba(12,20,31,0.92))] text-sm font-black tracking-[0.2em] text-sky-100 shadow-[0_18px_48px_rgba(14,165,233,0.18)]">
             DW
           </div>
-          <span className="group-hover:text-primary transition-colors">Boys.mtv</span>
+          <div className="hidden sm:block">
+            <div className="text-sm uppercase tracking-[0.26em] text-slate-400">Dedy Wijaya</div>
+            <div className="text-xs text-slate-500">Engineering portfolio</div>
+          </div>
         </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+        <div className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href} 
-              className="hover:text-white transition-all relative group"
-            >
+            <Link key={link.name} href={link.href} className="text-sm text-slate-300 transition hover:text-white">
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all group-hover:w-full" />
             </Link>
           ))}
         </div>
 
-        <div className="flex gap-4 items-center">
-          <div className="hidden sm:flex gap-2">
-            <Link href="https://github.com/boysmtv" target="_blank" className="p-2 hover:bg-white/10 rounded-full transition-all text-gray-400 hover:text-white">
-              <Github size={20} />
-            </Link>
-            <Link href="https://www.linkedin.com/in/dedy-wijaya-421698196/" target="_blank" className="p-2 hover:bg-white/10 rounded-full transition-all text-gray-400 hover:text-white">
-              <Linkedin size={20} />
-            </Link>
-          </div>
-          
-          <button 
-            className="md:hidden p-2 text-gray-400"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X /> : <Menu />}
-          </button>
+        <div className="hidden items-center gap-2 md:flex">
+          <Link href="https://github.com/boysmtv" target="_blank" className="nav-icon-link">
+            <Github size={18} />
+          </Link>
+          <Link href="https://www.linkedin.com/in/dedy-wijaya-421698196/" target="_blank" className="nav-icon-link">
+            <Linkedin size={18} />
+          </Link>
+          <Link href="mailto:boys.mtv@gmail.com" className="secondary-button px-4 py-2 text-sm">
+            <Mail size={16} />
+            Let&apos;s talk
+          </Link>
         </div>
+
+        <button className="rounded-xl border border-white/10 bg-white/5 p-2 text-slate-200 md:hidden" onClick={() => setMobileMenuOpen((value) => !value)}>
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </div>
 
-      {/* Mobile Menu */}
-      <motion.div 
+      <motion.div
         initial={false}
         animate={mobileMenuOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
-        className="md:hidden overflow-hidden glass-panel border-x-0 border-t-0 bg-surface/95 backdrop-blur-xl"
+        className="overflow-hidden border-t border-white/10 bg-slate-950/95 md:hidden"
       >
-        <div className="flex flex-col p-6 gap-4">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 sm:px-10">
           {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href} 
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-lg font-medium text-gray-400 hover:text-white"
-            >
+            <Link key={link.name} href={link.href} onClick={() => setMobileMenuOpen(false)} className="text-base text-slate-200">
               {link.name}
             </Link>
           ))}
-          <div className="flex gap-4 pt-4 border-t border-surfaceBorder">
-            <Link href="https://github.com/boysmtv" target="_blank" className="text-gray-400"><Github /></Link>
-            <Link href="https://www.linkedin.com/in/dedy-wijaya-421698196/" target="_blank" className="text-gray-400"><Linkedin /></Link>
-            <Link href="mailto:boys.mtv@gmail.com" className="text-gray-400"><Mail /></Link>
+          <div className="mt-2 flex items-center gap-3 border-t border-white/10 pt-4">
+            <Link href="https://github.com/boysmtv" target="_blank" className="nav-icon-link">
+              <Github size={18} />
+            </Link>
+            <Link href="https://www.linkedin.com/in/dedy-wijaya-421698196/" target="_blank" className="nav-icon-link">
+              <Linkedin size={18} />
+            </Link>
+            <Link href="mailto:boys.mtv@gmail.com" className="nav-icon-link">
+              <Mail size={18} />
+            </Link>
           </div>
         </div>
       </motion.div>

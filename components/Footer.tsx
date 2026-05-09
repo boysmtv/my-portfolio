@@ -1,15 +1,20 @@
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-surfaceBorder bg-surface py-12">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-center md:text-left">
-          <h2 className="text-xl font-bold text-white mb-2">Dedy Wijaya</h2>
-          <p className="text-gray-500 text-sm">Technical Lead & Senior Android Engineer | Backend Specialist</p>
+    <footer className="border-t border-white/10 bg-slate-950/80">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-10 sm:px-10 lg:flex-row lg:items-end lg:justify-between lg:px-14">
+        <div className="space-y-2">
+          <p className="text-xs uppercase tracking-[0.26em] text-sky-300">Dedy Wijaya</p>
+          <h2 className="text-2xl font-black text-white">Technical Lead · Android · Backend · Payments</h2>
+          <p className="max-w-2xl text-sm leading-7 text-slate-400">
+            Portfolio focused on engineering credibility, project clarity, and systems that remain dependable after release.
+          </p>
         </div>
-        <div className="flex flex-col items-center md:items-end text-sm text-gray-500">
+        <div className="space-y-1 text-sm leading-7 text-slate-400 lg:text-right">
           <p>boys.mtv@gmail.com</p>
           <p>08158844424</p>
-          <p className="mt-4 text-xs opacity-50">© {new Date().getFullYear()} Dedy Wijaya. Built with Next.js, Framer Motion & Docker.</p>
+          <p className="pt-3 text-xs uppercase tracking-[0.22em] text-slate-500">
+            © {new Date().getFullYear()} Dedy Wijaya
+          </p>
         </div>
       </div>
     </footer>

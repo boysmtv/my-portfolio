@@ -1,0 +1,1 @@
+Tailwind and Next.js styles live under app/globals.css for this scaffold.

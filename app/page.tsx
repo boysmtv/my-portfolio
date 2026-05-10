@@ -10,11 +10,14 @@ import Education from "@/components/Education";
 import Organizations from "@/components/Organizations";
 import Achievements from "@/components/Achievements";
 import EngineeringApproach from "@/components/EngineeringApproach";
+import TrustSignals from "@/components/TrustSignals";
+import FinalCTA from "@/components/FinalCTA";
 
 export default function Home() {
   return (
     <div className="w-full">
       <Hero />
+      <TrustSignals />
       <div className="mx-auto max-w-7xl px-6 pb-28 sm:px-10 lg:px-14">
         <div className="space-y-10">
           <Summary />

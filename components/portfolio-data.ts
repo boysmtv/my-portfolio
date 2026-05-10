@@ -1,18 +1,42 @@
+export type ProjectMetric = {
+  label: string;
+  value: string;
+};
+
+export type EvidencePanel = {
+  title: string;
+  body: string;
+};
+
 export type FeaturedProject = {
+  slug: string;
   title: string;
   category: string;
   role: string;
+  ownership: string;
   period: string;
+  platform: string;
   headline: string;
   summary: string;
   impact: string[];
   responsibilities: string[];
   challenges: string[];
   decisions: string[];
+  evidencePanels: EvidencePanel[];
   stack: string[];
   accent: string;
-  metrics: { label: string; value: string }[];
+  metrics: ProjectMetric[];
+  taxonomy: string[];
   contactHref: string;
+};
+
+export type SupportingProject = {
+  title: string;
+  category: string;
+  role: string;
+  outcome: string;
+  note: string;
+  taxonomy: string[];
 };
 
 export const proofChips = [
@@ -31,10 +55,13 @@ export const heroMetrics = [
 
 export const featuredProjects: FeaturedProject[] = [
   {
+    slug: "bri-managed-payment-services",
     title: "BRI Managed Payment Services",
     category: "Payments Infrastructure",
     role: "Fullstack Android Developer",
+    ownership: "Built and stabilized switching-critical flows",
     period: "2019 - 2021",
+    platform: "Android + backend integration",
     headline: "ISO8583 debit and payment flows engineered for high-throughput banking operations.",
     summary:
       "Built and stabilized payment integrations across switching and host communication layers. The focus was not just shipping features, but keeping settlement-critical transaction flows dependable under production pressure.",
@@ -58,6 +85,20 @@ export const featuredProjects: FeaturedProject[] = [
       "Treated debugging, traceability, and fallback behavior as product requirements.",
       "Optimized for operability, not just functional completeness.",
     ],
+    evidencePanels: [
+      {
+        title: "Operational pressure",
+        body: "Transaction paths had to remain explainable during incident response, not only correct during ideal-path testing.",
+      },
+      {
+        title: "Constraint handled",
+        body: "Proprietary ISO8583 variants forced careful adapter boundaries and message tracing discipline.",
+      },
+      {
+        title: "Why it mattered",
+        body: "Payment reliability is a trust surface. Cleaner retries, socket behavior, and traceability reduced noise for operations teams.",
+      },
+    ],
     stack: ["Java", "Kotlin", "Spring Boot", "ISO8583", "JPOS"],
     accent: "from-sky-500/30 via-cyan-400/10 to-transparent",
     metrics: [
@@ -65,13 +106,17 @@ export const featuredProjects: FeaturedProject[] = [
       { label: "focus", value: "switching reliability" },
       { label: "surface", value: "android + backend" },
     ],
+    taxonomy: ["Payments", "ISO8583", "Android", "Backend", "Operations"],
     contactHref: "mailto:boys.mtv@gmail.com?subject=Discuss%20BRI%20Managed%20Payment%20Services",
   },
   {
+    slug: "lintasarta-enterprise-ekyc",
     title: "Lintasarta Enterprise eKYC",
     category: "Identity Verification",
     role: "Technical Lead Developer",
+    ownership: "Led design-to-support delivery posture",
     period: "2021 - 2022",
+    platform: "Enterprise platform delivery",
     headline: "Enterprise eKYC delivery with uptime discipline, security awareness, and client-facing architecture ownership.",
     summary:
       "Led the translation of business requirements into a deployable eKYC platform. The work covered technical direction, infrastructure, incident support, and explaining solution design clearly to enterprise stakeholders.",
@@ -95,6 +140,20 @@ export const featuredProjects: FeaturedProject[] = [
       "Used operational readiness as a gating condition, not an afterthought.",
       "Positioned security and pentest work as part of the definition of done.",
     ],
+    evidencePanels: [
+      {
+        title: "Operational posture",
+        body: "Availability, firewall readiness, and L2 diagnostics were handled as part of delivery, not support leftovers.",
+      },
+      {
+        title: "Stakeholder layer",
+        body: "The role included explaining architecture choices directly to enterprise clients, not only writing implementation code.",
+      },
+      {
+        title: "Trust result",
+        body: "The platform was framed and delivered as a system that had to stay dependable under scrutiny, not only pass feature review.",
+      },
+    ],
     stack: ["Kotlin", "Java", "Spring Boot", "OCR", "Infrastructure"],
     accent: "from-emerald-500/30 via-lime-400/10 to-transparent",
     metrics: [
@@ -102,13 +161,17 @@ export const featuredProjects: FeaturedProject[] = [
       { label: "focus", value: "identity trust" },
       { label: "ownership", value: "design to support" },
     ],
+    taxonomy: ["eKYC", "Security", "Operations", "Infrastructure", "Leadership"],
     contactHref: "mailto:boys.mtv@gmail.com?subject=Discuss%20Lintasarta%20Enterprise%20eKYC",
   },
   {
+    slug: "asetku-mobile-lending-flows",
     title: "Asetku Mobile & Lending Flows",
     category: "Fintech Product Delivery",
-    role: "Sr. Fullstack Android Developer",
+    role: "Senior Fullstack Android Developer",
+    ownership: "Rebuilt mobile flows with backend coordination",
     period: "2022",
+    platform: "Fintech mobile product",
     headline: "Fintech mobile experience rebuilt with stronger product flow, backend integration, and delivery speed.",
     summary:
       "Rebuilt the Asetku mobile application and connected it to backend services that supported borrower and lender journeys. The work centered on shipping product-critical flows without losing engineering discipline.",
@@ -132,6 +195,20 @@ export const featuredProjects: FeaturedProject[] = [
       "Prioritized maintainability and state clarity over short-lived hacks.",
       "Treated reliability and UX continuity as shared goals.",
     ],
+    evidencePanels: [
+      {
+        title: "Rebuild context",
+        body: "The challenge was not just adding a feature. It was rebuilding product-critical journeys without losing momentum or reliability.",
+      },
+      {
+        title: "Delivery tension",
+        body: "Fast product movement had to stay aligned with backend contracts and mobile stability expectations.",
+      },
+      {
+        title: "Outcome focus",
+        body: "The stronger engineering win was a clearer, more maintainable product surface that could keep absorbing roadmap changes.",
+      },
+    ],
     stack: ["Kotlin", "MVVM", "Coroutines", "Retrofit", "REST API"],
     accent: "from-fuchsia-500/30 via-violet-400/10 to-transparent",
     metrics: [
@@ -139,39 +216,72 @@ export const featuredProjects: FeaturedProject[] = [
       { label: "focus", value: "product velocity" },
       { label: "delivery", value: "business critical" },
     ],
+    taxonomy: ["Fintech", "Android", "Product Delivery", "API", "Stability"],
     contactHref: "mailto:boys.mtv@gmail.com?subject=Discuss%20Asetku%20Mobile%20Delivery",
   },
 ];
 
-export const supportingProjects = [
+export const supportingProjects: SupportingProject[] = [
   {
     title: "NBDS Branch Design System",
     category: "Design System",
+    role: "Built reusable branch surfaces",
+    outcome: "Consistency across banking branch UI patterns",
     note: "Reusable banking branch UI patterns and operational consistency.",
+    taxonomy: ["Design System", "Banking", "UI Patterns"],
   },
   {
     title: "Brizzi NFC Module",
     category: "Android Payments",
+    role: "Implemented card interaction flow",
+    outcome: "Supported offline balance sync concerns",
     note: "Card interaction flow with offline balance sync concerns.",
+    taxonomy: ["NFC", "Android", "Payments"],
   },
   {
     title: "Pertamina EDC Monitoring",
     category: "Realtime Monitoring",
+    role: "Built live operational visibility",
+    outcome: "Nationwide monitoring for EDC device health",
     note: "Nationwide device monitoring with live operational visibility.",
+    taxonomy: ["Monitoring", "Operations", "Realtime"],
   },
   {
     title: "Merchant Management Dashboard",
     category: "Operations Platform",
+    role: "Built settlement-oriented admin surface",
+    outcome: "Improved onboarding and access control clarity",
     note: "Onboarding, access control, and settlement-oriented dashboards.",
+    taxonomy: ["Dashboard", "Operations", "Settlement"],
   },
   {
     title: "LinkAja Payment Module",
     category: "SDK Integration",
+    role: "Integrated host-safe payment module",
+    outcome: "Embeddable payment flow with stability focus",
     note: "Embeddable payment experience designed for host app stability.",
+    taxonomy: ["SDK", "Payments", "Mobile"],
   },
   {
     title: "Lazismu Donation Platform",
     category: "Product Delivery",
+    role: "Shipped trust-focused donation flow",
+    outcome: "Payment gateway-backed donation journey",
     note: "Trust-focused donation flows and payment gateway integration.",
+    taxonomy: ["Product", "Donations", "Payments"],
   },
 ];
+
+export const siteSummary = {
+  title: "Dedy Wijaya",
+  description:
+    "Engineering portfolio focused on fintech delivery, Android architecture, backend integration, and production-grade payment systems.",
+  contactEmail: "boys.mtv@gmail.com",
+  phone: "08158844424",
+  github: "https://github.com/boysmtv",
+  linkedin: "https://www.linkedin.com/in/dedy-wijaya-421698196/",
+};
+
+export function getFeaturedProjectBySlug(slug: string) {
+  return featuredProjects.find((project) => project.slug === slug);
+}

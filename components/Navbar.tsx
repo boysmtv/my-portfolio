@@ -3,24 +3,55 @@
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { Github, Linkedin, Mail, Menu, X } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const navLinks = [
-  { name: 'Profile', href: '#summary' },
-  { name: 'Work', href: '#projects' },
-  { name: 'Case study', href: '#case-study' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Architecture', href: '#architecture' },
+  { name: 'Profile', href: '#summary', id: 'summary' },
+  { name: 'Work', href: '#projects', id: 'projects' },
+  { name: 'Case study', href: '#case-study', id: 'case-study' },
+  { name: 'Experience', href: '#experience', id: 'experience' },
+  { name: 'Architecture', href: '#architecture', id: 'architecture' },
+  { name: 'Contact', href: '#contact', id: 'contact' },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('summary');
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setIsScrolled(latest > 24);
   });
+
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.getElementById(link.id))
+      .filter((element): element is HTMLElement => Boolean(element));
+
+    if (sections.length === 0) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio);
+
+        if (visibleEntries[0]?.target?.id) {
+          setActiveSection(visibleEntries[0].target.id);
+        }
+      },
+      {
+        rootMargin: '-20% 0px -55% 0px',
+        threshold: [0.2, 0.45, 0.7],
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <motion.nav
@@ -41,12 +72,24 @@ export default function Navbar() {
           </div>
         </Link>
 
-        <div className="hidden items-center gap-7 md:flex">
-          {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} className="text-sm text-slate-300 transition hover:text-white">
-              {link.name}
-            </Link>
-          ))}
+        <div className="hidden items-center gap-2 md:flex">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`rounded-full px-4 py-2 text-sm transition ${
+                  isActive
+                    ? 'bg-white/10 text-white shadow-[0_10px_30px_rgba(15,23,42,0.35)]'
+                    : 'text-slate-300 hover:bg-white/[0.04] hover:text-white'
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
@@ -74,7 +117,12 @@ export default function Navbar() {
       >
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 sm:px-10">
           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} onClick={() => setMobileMenuOpen(false)} className="text-base text-slate-200">
+            <Link
+              key={link.name}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-base ${activeSection === link.id ? 'text-white' : 'text-slate-200'}`}
+            >
               {link.name}
             </Link>
           ))}

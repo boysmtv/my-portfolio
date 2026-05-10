@@ -1,9 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowUpRight, BriefcaseBusiness, Target, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Target, X } from 'lucide-react';
+import Link from 'next/link';
+import { useEffect } from 'react';
 
-import type { FeaturedProject } from './portfolio-data';
+import { featuredProjects, type FeaturedProject } from './portfolio-data';
 
 export default function ProjectModal({
   project,
@@ -12,12 +14,30 @@ export default function ProjectModal({
   project: FeaturedProject;
   onClose: () => void;
 }) {
+  const index = featuredProjects.findIndex((item) => item.slug === project.slug);
+  const previousProject = index > 0 ? featuredProjects[index - 1] : null;
+  const nextProject = index >= 0 && index < featuredProjects.length - 1 ? featuredProjects[index + 1] : null;
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [onClose]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-modal-title"
     >
       <div className="absolute inset-0 bg-slate-950/92 backdrop-blur-xl" onClick={onClose} />
 
@@ -31,6 +51,7 @@ export default function ProjectModal({
         <button
           onClick={onClose}
           className="absolute right-5 top-5 z-20 rounded-full border border-white/10 bg-black/30 p-3 text-white transition hover:bg-white/10"
+          aria-label="Close project quick view"
         >
           <X size={20} />
         </button>
@@ -39,16 +60,14 @@ export default function ProjectModal({
         <div className="relative max-h-[92vh] overflow-y-auto">
           <div className="border-b border-white/10 px-8 py-10 sm:px-12 sm:py-12">
             <p className="mb-3 text-xs uppercase tracking-[0.3em] text-sky-200/80">{project.category}</p>
-            <h2 className="max-w-4xl text-3xl font-black leading-tight text-white sm:text-5xl">{project.title}</h2>
+            <h2 id="project-modal-title" className="max-w-4xl text-3xl font-black leading-tight text-white sm:text-5xl">
+              {project.title}
+            </h2>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200/90">{project.headline}</p>
             <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-200/80">
               <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">{project.role}</span>
               <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">{project.period}</span>
-              {project.stack.map((item) => (
-                <span key={item} className="rounded-full border border-white/10 bg-white/5 px-4 py-2">
-                  {item}
-                </span>
-              ))}
+              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">{project.platform}</span>
             </div>
           </div>
 
@@ -99,6 +118,18 @@ export default function ProjectModal({
                   ))}
                 </div>
               </section>
+
+              <section className="rounded-[1.5rem] border border-white/10 bg-black/20 p-6">
+                <div className="mb-4 text-sm uppercase tracking-[0.24em] text-slate-400">Evidence panels</div>
+                <div className="grid gap-4">
+                  {project.evidencePanels.map((item) => (
+                    <div key={item.title} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
+                      <div className="text-base font-semibold text-white">{item.title}</div>
+                      <p className="mt-2 text-sm leading-7 text-slate-300">{item.body}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
             </div>
 
             <div className="space-y-6">
@@ -125,13 +156,55 @@ export default function ProjectModal({
                 </div>
               </section>
 
-              <a
-                href={project.contactHref}
-                className="primary-button w-full justify-center"
-              >
-                Discuss this project
-                <ArrowUpRight size={18} />
-              </a>
+              <section className="rounded-[1.5rem] border border-white/10 bg-slate-950/65 p-6">
+                <h3 className="mb-4 text-lg font-semibold text-white">Project taxonomy</h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.taxonomy.map((item) => (
+                    <span key={item} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-sm text-slate-200">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </section>
+
+              <div className="grid gap-3">
+                <Link href={`/case-studies/${project.slug}`} className="primary-button w-full justify-center">
+                  Open full case study
+                  <ArrowUpRight size={18} />
+                </Link>
+                <a href={project.contactHref} className="secondary-button w-full justify-center">
+                  Discuss this project
+                </a>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {previousProject ? (
+                  <Link href={`/case-studies/${previousProject.slug}`} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/20">
+                    <div className="flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-slate-500">
+                      <ArrowLeft size={14} />
+                      Previous
+                    </div>
+                    <div className="mt-2 text-sm font-semibold text-white">{previousProject.title}</div>
+                  </Link>
+                ) : (
+                  <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.02] p-4 text-sm text-slate-500">
+                    First featured case study
+                  </div>
+                )}
+                {nextProject ? (
+                  <Link href={`/case-studies/${nextProject.slug}`} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4 text-right transition hover:border-white/20">
+                    <div className="flex items-center justify-end gap-2 text-xs uppercase tracking-[0.24em] text-slate-500">
+                      Next
+                      <ArrowRight size={14} />
+                    </div>
+                    <div className="mt-2 text-sm font-semibold text-white">{nextProject.title}</div>
+                  </Link>
+                ) : (
+                  <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.02] p-4 text-right text-sm text-slate-500">
+                    Last featured case study
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>

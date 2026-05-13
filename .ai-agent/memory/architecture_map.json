@@ -1,0 +1,16 @@
+{
+  "project_root": "/Users/dedywijaya/Work/Google/learn/project/web_portofolio",
+  "final_project_root": "/Users/dedywijaya/Work/Google/learn/project/web_portofolio",
+  "stack_id": "web-nextjs",
+  "entrypoints": [],
+  "services": [],
+  "tests": [],
+  "docs": [
+    ".ai-agent/snapshots/v1/final/README.md",
+    "README.md",
+    "brief.md",
+    "brief.v2.md"
+  ],
+  "updated_at": "2026-05-10T05:28:55.521447+00:00",
+  "source_file_count": 45
+}

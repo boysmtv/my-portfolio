@@ -1,0 +1,322 @@
+{
+  "project_root": "/Users/dedywijaya/Work/Google/learn/project/web_portofolio",
+  "file_count": 45,
+  "files": [
+    {
+      "path": ".ai-agent/snapshots/v1/final/app/layout.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/app/page.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/Achievements.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/Architecture.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/CaseStudy.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/Certifications.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/Education.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/EngineeringApproach.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/Experience.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/Footer.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/Hero.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/Navbar.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/Organizations.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/ProjectModal.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/Projects.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/Summary.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/components/TechStack.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/next-env.d.ts",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/next.config.js",
+      "language": "javascript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/postcss.config.js",
+      "language": "javascript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": ".ai-agent/snapshots/v1/final/tailwind.config.ts",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "app/layout.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "app/page.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/Achievements.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/Architecture.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/CaseStudy.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/Certifications.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/Education.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/EngineeringApproach.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/Experience.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/FinalCTA.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/Footer.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/Hero.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/Navbar.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/Organizations.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/ProjectModal.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/Projects.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/Summary.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/TechStack.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/TrustSignals.tsx",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "components/portfolio-data.ts",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "next-env.d.ts",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "next.config.js",
+      "language": "javascript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "postcss.config.js",
+      "language": "javascript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    },
+    {
+      "path": "tailwind.config.ts",
+      "language": "typescript",
+      "package": "",
+      "classes": [],
+      "functions": []
+    }
+  ],
+  "updated_at": "2026-05-10T05:28:55.521309+00:00"
+}

@@ -1,0 +1,386 @@
+{
+  "flows": [
+    {
+      "name": "achievements",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/Achievements.tsx",
+        "components/Achievements.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "api-client",
+      "entrypoints": [],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "app-router",
+      "entrypoints": [],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "architecture",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/Architecture.tsx",
+        "components/Architecture.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "casestudy",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/CaseStudy.tsx",
+        "components/CaseStudy.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "certifications",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/Certifications.tsx",
+        "components/Certifications.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "education",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/Education.tsx",
+        "components/Education.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "engineeringapproach",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/EngineeringApproach.tsx",
+        "components/EngineeringApproach.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "experience",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/Experience.tsx",
+        "components/Experience.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "finalcta",
+      "entrypoints": [
+        "components/FinalCTA.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "footer",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/Footer.tsx",
+        "components/Footer.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "hero",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/Hero.tsx",
+        "components/Hero.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "navbar",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/Navbar.tsx",
+        "components/Navbar.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "organizations",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/Organizations.tsx",
+        "components/Organizations.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "portfolio-data",
+      "entrypoints": [
+        "components/portfolio-data.ts"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "projectmodal",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/ProjectModal.tsx",
+        "components/ProjectModal.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "projects",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/Projects.tsx",
+        "components/Projects.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "state",
+      "entrypoints": [],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "summary",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/Summary.tsx",
+        "components/Summary.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "techstack",
+      "entrypoints": [
+        ".ai-agent/snapshots/v1/final/components/TechStack.tsx",
+        "components/TechStack.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "trustsignals",
+      "entrypoints": [
+        "components/TrustSignals.tsx"
+      ],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    },
+    {
+      "name": "ui",
+      "entrypoints": [],
+      "domain_functions": [],
+      "tests": [],
+      "docs": [
+        ".ai-agent/memory/api_contracts.json",
+        ".ai-agent/memory/architecture_map.json",
+        ".ai-agent/memory/change_log.json",
+        ".ai-agent/memory/engineering_guidance.json",
+        ".ai-agent/memory/feature_catalog.json",
+        ".ai-agent/memory/flow_map.json"
+      ],
+      "notes": []
+    }
+  ],
+  "updated_at": "2026-05-10T05:28:55.521770+00:00"
+}

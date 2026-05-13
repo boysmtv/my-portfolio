@@ -1,0 +1,28 @@
+{
+  "features": [
+    "achievements",
+    "api-client",
+    "app-router",
+    "architecture",
+    "casestudy",
+    "certifications",
+    "education",
+    "engineeringapproach",
+    "experience",
+    "finalcta",
+    "footer",
+    "hero",
+    "navbar",
+    "organizations",
+    "portfolio-data",
+    "projectmodal",
+    "projects",
+    "state",
+    "summary",
+    "techstack",
+    "trustsignals",
+    "ui"
+  ],
+  "commands": [],
+  "updated_at": "2026-05-10T05:28:55.521399+00:00"
+}

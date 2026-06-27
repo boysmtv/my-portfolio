@@ -1,0 +1,57 @@
+{
+  "project_name": "web_portofolio",
+  "project_root": "/Users/dedywijaya/Work/Google/learn/project/web_portofolio",
+  "final_project_root": "/Users/dedywijaya/Work/Google/learn/project/web_portofolio",
+  "problem_file": "/Users/dedywijaya/Work/Google/learn/project/web_portofolio/brief.v2.md",
+  "problem_statement": "# Web Portfolio Visual Evolution Brief v2\n\n## Version Intent\nThis brief is the second evolution pass for the existing `web_portofolio` project.\n\nBrief v1 already improved:\n- hero hierarchy\n- premium visual direction\n- featured project structure\n- curated supporting project list\n- stronger overall storytelling tone\n\nThis v2 brief exists because the portfolio is now stronger, but it still needs a more decisive credibility pass. The remaining work is not about basic polish anymore. It is about maki\n...[truncated 12876 chars]",
+  "stack": [
+    "TypeScript",
+    "Next.js",
+    "Tailwind CSS"
+  ],
+  "stack_id": "web-nextjs",
+  "template_id": "web-nextjs",
+  "platform": "web",
+  "domain": "web",
+  "project_type": "web",
+  "build_commands": [
+    "npm install --no-fund --no-audit",
+    "npm run build"
+  ],
+  "run_commands": [
+    "npm run dev"
+  ],
+  "features": [
+    "achievements",
+    "api-client",
+    "app-router",
+    "architecture",
+    "casestudy",
+    "certifications",
+    "education",
+    "engineeringapproach",
+    "experience",
+    "finalcta",
+    "footer",
+    "hero",
+    "navbar",
+    "organizations",
+    "portfolio-data",
+    "projectmodal",
+    "projects",
+    "state",
+    "summary",
+    "techstack",
+    "trustsignals",
+    "ui"
+  ],
+  "packages": [],
+  "languages": [
+    "javascript",
+    "typescript"
+  ],
+  "entrypoints": [],
+  "final_status": "approved",
+  "mode": "external_service",
+  "updated_at": "2026-05-10T05:28:55.678184+00:00"
+}

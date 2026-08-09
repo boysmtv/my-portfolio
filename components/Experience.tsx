@@ -49,7 +49,13 @@ const experience = [
 export default function Experience() {
   return (
     <section id="experience" className="space-y-8 py-12">
-      <div className="max-w-3xl space-y-4">
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="space-y-4"
+      >
         <p className="section-kicker">Experience</p>
         <h2 className="text-4xl font-black text-white sm:text-5xl">
           Career moves that steadily increased scope, system complexity, and production responsibility.
@@ -58,39 +64,45 @@ export default function Experience() {
           The pattern across these roles is consistent: move closer to critical systems, own more runtime risk,
           and contribute at a deeper technical and delivery level.
         </p>
-      </div>
+      </motion.div>
 
-      <div className="space-y-5">
+      <div className="relative space-y-0">
+        <div className="pointer-events-none absolute left-[23px] top-0 h-full w-px bg-gradient-to-b from-emerald-400/40 via-emerald-400/20 to-transparent sm:left-[27px]" />
+
         {experience.map((item, index) => (
           <motion.div
             key={`${item.company}-${item.period}`}
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -12 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.06 }}
-            className="section-panel"
+            transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+            className="relative ml-12 pb-10 last:pb-0 sm:ml-14"
           >
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-              <div className="max-w-3xl space-y-3">
-                <div className="flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-slate-500">
-                  <BriefcaseBusiness size={14} />
-                  {item.company}
-                </div>
-                <h3 className="text-2xl font-bold text-white">{item.role}</h3>
-                <p className="text-base leading-8 text-slate-300">{item.summary}</p>
-              </div>
-              <div className="inline-flex h-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs uppercase tracking-[0.22em] text-slate-400">
-                <CalendarRange size={14} />
-                {item.period}
-              </div>
-            </div>
+            <div className="absolute -left-12 top-2 h-3 w-3 rounded-full border-2 border-emerald-400 bg-[#070B14] sm:-left-14 sm:h-3.5 sm:w-3.5" />
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              {item.signals.map((signal) => (
-                <span key={signal} className="rounded-full border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-slate-300">
-                  {signal}
-                </span>
-              ))}
+            <div className="section-panel">
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-slate-500">
+                    <BriefcaseBusiness size={14} />
+                    {item.company}
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">{item.role}</h3>
+                  <p className="text-base leading-8 text-slate-300">{item.summary}</p>
+                </div>
+                <div className="inline-flex h-fit items-center gap-2 rounded-full border border-emerald-400/15 bg-emerald-400/5 px-4 py-2 text-xs uppercase tracking-[0.22em] text-emerald-200">
+                  <CalendarRange size={14} />
+                  {item.period}
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                {item.signals.map((signal) => (
+                  <span key={signal} className="rounded-full border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-slate-300">
+                    {signal}
+                  </span>
+                ))}
+              </div>
             </div>
           </motion.div>
         ))}

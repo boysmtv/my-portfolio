@@ -15,7 +15,7 @@ export default function Footer() {
           </p>
         </div>
         <div className="space-y-2 text-sm leading-7 text-slate-400 lg:text-right">
-          <Link href="#contact" className="block text-slate-200 transition hover:text-white">
+          <Link href="/contact" className="block text-slate-200 transition hover:text-white">
             Jump to contact
           </Link>
           <a href={`mailto:${siteSummary.contactEmail}`} className="block transition hover:text-white">

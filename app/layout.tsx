@@ -9,7 +9,10 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://dedywijaya.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Dedy Wijaya | Technical Lead for Fintech, Android, and Payment Systems",
   description: siteSummary.description,
   keywords: [
@@ -27,17 +30,42 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Dedy Wijaya | Technical Lead for Fintech, Android, and Payment Systems",
     description: siteSummary.description,
     type: "website",
     siteName: "Dedy Wijaya Portfolio",
+    url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
     title: "Dedy Wijaya | Technical Lead for Fintech, Android, and Payment Systems",
     description: siteSummary.description,
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Dedy Wijaya",
+  url: siteUrl,
+  jobTitle: "Technical Lead",
+  email: siteSummary.contactEmail,
+  telephone: siteSummary.phone,
+  sameAs: [siteSummary.github, siteSummary.linkedin],
+  knowsAbout: [
+    "Fintech",
+    "Payment Systems",
+    "Android Development",
+    "Backend Integration",
+    "ISO8583",
+    "JPOS",
+    "System Architecture",
+    "Production Operations",
+  ],
 };
 
 export default function RootLayout({
@@ -48,8 +76,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <a href="#main-content" className="skip-to-content">
+          Skip to main content
+        </a>
         <Navbar />
-        <main className="flex min-h-screen flex-col overflow-x-hidden">{children}</main>
+        <main id="main-content" className="flex min-h-screen flex-col overflow-x-hidden">{children}</main>
         <Footer />
       </body>
     </html>

@@ -9,30 +9,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#050505",
-        surface: "#111111",
-        surfaceBorder: "#222222",
-        primary: "#3b82f6",
-        accent: "#06b6d4"
+        background: 'var(--color-background)',
+        surface: 'var(--color-surface)',
+        surfaceBorder: 'var(--color-base-700)',
+        primary: 'var(--color-accent-500)',
+        accent: 'var(--color-cyan-500)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-glow': 'conic-gradient(from 180deg at 50% 50%, #2a8af633 0deg, #a853ba33 180deg, #e92a6733 360deg)',
       },
-      animation: {
-        'gradient-x': 'gradient-x 15s ease infinite',
+      fontFamily: {
+        sans: ['var(--font-body)'],
+        mono: ['var(--font-mono)'],
       },
-      keyframes: {
-        'gradient-x': {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center',
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
-          },
-        },
+      borderRadius: {
+        '4xl': 'var(--radius-4xl)',
+        '3xl': 'var(--radius-3xl)',
+        '2xl': 'var(--radius-2xl)',
+      },
+      boxShadow: {
+        'glow-primary': 'var(--shadow-glow-primary)',
+        'glow-emerald': 'var(--shadow-glow-emerald)',
+        'inner-subtle': 'var(--shadow-inner)',
+      },
+      spacing: {
+        '18': 'var(--space-18)',
       },
     },
   },

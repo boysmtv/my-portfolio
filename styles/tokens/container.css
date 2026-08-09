@@ -1,0 +1,10 @@
+:root {
+  --container-max: 1280px;
+  --container-narrow: 1024px;
+  --container-wide: 1440px;
+  --container-full: 100%;
+  --container-padding: 1.5rem;
+  --container-padding-sm: 2.5rem;
+  --container-padding-lg: 3.5rem;
+  --container-padding-xl: 5rem;
+}

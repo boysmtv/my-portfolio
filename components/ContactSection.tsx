@@ -32,7 +32,7 @@ const contactCards = [
 export default function ContactSection() {
   return (
     <section id="contact" className="space-y-8 py-12">
-      <div className="max-w-4xl space-y-4">
+      <div className="space-y-4">
         <p className="section-kicker">Contact</p>
         <h2 className="text-4xl font-black text-white sm:text-5xl">
           If the problem is delivery under pressure, architecture clarity, or production discipline, let&apos;s talk.
@@ -64,10 +64,10 @@ export default function ContactSection() {
                   href={card.href}
                   target={card.href.startsWith('http') ? '_blank' : undefined}
                   rel={card.href.startsWith('http') ? 'noreferrer' : undefined}
-                  className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5 transition hover:border-sky-300/30 hover:bg-white/[0.05]"
+                  className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5 transition hover:border-emerald-300/30 hover:bg-white/[0.05]"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-black/20 text-sky-200">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-400/20 bg-emerald-400/10 text-emerald-200">
                       <Icon size={18} />
                     </div>
                     <ArrowUpRight size={18} className="text-slate-500" />

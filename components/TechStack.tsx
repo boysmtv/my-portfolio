@@ -19,20 +19,26 @@ const stackGroups = [
 
 export default function TechStack() {
   return (
-    <section className="space-y-6">
-      <div className="space-y-3">
-        <p className="section-kicker">Technical focus</p>
-        <h2 className="text-3xl font-black text-white">Tools are useful, but only when they reinforce delivery quality.</h2>
-      </div>
+    <section id="capabilities" className="space-y-6">
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="space-y-3"
+      >
+        <p className="section-kicker">Capabilities</p>
+        <h2 className="text-3xl font-black text-white">Tools and practices that reinforce delivery quality.</h2>
+      </motion.div>
 
-      <div className="space-y-4">
+      <div className="grid gap-4 md:grid-cols-3">
         {stackGroups.map((group, index) => (
           <motion.div
             key={group.title}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.06 }}
+            transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
             className="section-panel"
           >
             <h3 className="mb-4 text-xl font-semibold text-white">{group.title}</h3>

@@ -6,10 +6,10 @@ type CardProps = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const variantStyles = {
-  default: 'rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(8,16,25,0.82),rgba(5,11,18,0.96))] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]',
-  elevated: 'rounded-[2rem] border border-white/10 bg-[#07111b] shadow-[0_35px_120px_rgba(2,6,23,0.85)]',
-  glass: 'rounded-3xl border border-white/10 bg-white/5 backdrop-blur',
-  outlined: 'rounded-[2rem] border border-white/10 bg-transparent',
+  default: 'rounded-2xl border border-border-subtle bg-base-800/50',
+  elevated: 'rounded-2xl border border-border-subtle bg-base-900 shadow-elevation-3',
+  glass: 'rounded-2xl border border-border-subtle bg-base-900/60 backdrop-blur-xl',
+  outlined: 'rounded-2xl border border-border-subtle bg-transparent',
 };
 
 const paddingStyles = {

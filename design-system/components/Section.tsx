@@ -14,7 +14,7 @@ const gapStyles = {
 
 export function Section({ children, id, gap = 'md', className = '', ...props }: SectionProps) {
   return (
-    <section id={id} className={`py-12 ${gapStyles[gap]} ${className}`} {...props}>
+    <section id={id} className={`py-24 ${gapStyles[gap]} ${className}`} {...props}>
       {children}
     </section>
   );

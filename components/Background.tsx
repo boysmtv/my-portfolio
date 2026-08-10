@@ -1,119 +1,91 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Award, GraduationCap, Trophy } from 'lucide-react';
 import { useState } from 'react';
+import { education, certifications, achievements } from './portfolio-data';
 
-const certificationList = [
-  'Jetpack Compose Crash Course for Android with Kotlin',
-  'SOLID Principles: Introducing Software Architecture & Design',
-  'Learning Kubernetes',
-  'Scrum: The Basics',
-  'Junior Mobile Programmer',
-  'Junior Web Programmer',
-];
-
-const signals = [
-  'Best Laboratory Assistant recognition',
-  'Internship exposure across public sector and technical service environments',
-  'Early networking and MikroTik workshop participation',
-  'Hands-on learning culture carried into current engineering work',
-];
-
-const focusAreas = ['Software Engineering', 'Networks', 'Artificial Intelligence', 'Information Systems'];
-
-const tabs = ['Education', 'Certifications', 'Achievements'] as const;
-type Tab = (typeof tabs)[number];
+const tabs = [
+  { id: 'education', label: 'Education' },
+  { id: 'certifications', label: 'Certifications' },
+  { id: 'achievements', label: 'Achievements' },
+] as const;
 
 export default function Background() {
-  const [activeTab, setActiveTab] = useState<Tab>('Education');
+  const [activeTab, setActiveTab] = useState<(typeof tabs)[number]['id']>('education');
 
   return (
-    <section id="background" className="space-y-6 py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="space-y-3"
-      >
-        <p className="section-kicker">Background</p>
-        <h2 className="text-3xl font-black text-white">Academic and professional foundation.</h2>
-      </motion.div>
+    <section id="background" className="py-24 border-t border-border-subtle">
+      <div className="site-wrap">
+        <p className="font-mono text-xs uppercase tracking-wider text-brand-400 mb-4">Background</p>
+        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-10 text-text-primary">
+          Credentials & education
+        </h2>
 
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-        className="section-panel"
-      >
-        <div className="mb-6 flex gap-1 rounded-xl border border-white/[0.06] bg-white/[0.02] p-1">
+        {/* Tab navigation */}
+        <div className="flex gap-1 p-1 bg-base-800/50 rounded-lg w-fit mb-8">
           {tabs.map((tab) => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-medium transition ${
-                activeTab === tab
-                  ? 'bg-emerald-400/15 text-emerald-200'
-                  : 'text-slate-400 hover:text-white'
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+                activeTab === tab.id
+                  ? 'bg-brand-500 text-white'
+                  : 'text-text-muted hover:text-text-primary'
               }`}
             >
-              {tab}
+              {tab.label}
             </button>
           ))}
         </div>
 
-        {activeTab === 'Education' && (
-          <div className="space-y-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-400/20 bg-emerald-400/10 text-emerald-300">
-              <GraduationCap size={22} />
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-white">Universitas Singaperbangsa Karawang</h3>
-              <p className="text-emerald-300">Bachelor of Computer Science · 2015 - 2019</p>
-            </div>
-            <div className="text-sm leading-7 text-slate-300">GPA 3.49 / 4.00</div>
-            <div className="flex flex-wrap gap-3">
-              {focusAreas.map((item) => (
-                <span key={item} className="rounded-full border border-white/10 bg-slate-950/55 px-3 py-2 text-sm text-slate-300">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'Certifications' && (
-          <div className="space-y-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-amber-400/20 bg-amber-400/10 text-amber-300">
-              <Award size={22} />
-            </div>
-            <div className="grid gap-3">
-              {certificationList.map((item) => (
-                <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-slate-300">
-                  {item}
+        {/* Tab content */}
+        <div className="min-h-[200px]">
+          {activeTab === 'education' && (
+            <div className="space-y-6">
+              {education.map((item, i) => (
+                <div key={i} className="border border-border-subtle rounded-xl p-6 bg-base-800/30">
+                  <h3 className="text-lg font-medium text-text-primary mb-1">{item.institution}</h3>
+                  <p className="text-sm text-text-secondary">{item.degree}</p>
+                  <p className="text-xs text-text-muted mt-2">{item.year}</p>
                 </div>
               ))}
             </div>
-          </div>
-        )}
+          )}
 
-        {activeTab === 'Achievements' && (
-          <div className="space-y-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-400/20 bg-emerald-400/10 text-emerald-300">
-              <Trophy size={22} />
-            </div>
-            <div className="space-y-4">
-              {signals.map((item) => (
-                <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm leading-7 text-slate-300">
-                  {item}
+          {activeTab === 'certifications' && (
+            <div className="space-y-3">
+              {certifications.map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-between border border-border-subtle rounded-lg px-5 py-4 hover:border-brand-500/20 transition-colors duration-200"
+                >
+                  <div>
+                    <div className="text-sm font-medium text-text-primary">{item.name}</div>
+                    <div className="text-xs text-text-muted mt-0.5">{item.issuer}</div>
+                  </div>
+                  <div className="text-xs text-text-muted">{item.year}</div>
                 </div>
               ))}
             </div>
-          </div>
-        )}
-      </motion.div>
+          )}
+
+          {activeTab === 'achievements' && (
+            <div className="space-y-3">
+              {achievements.map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-between border border-border-subtle rounded-lg px-5 py-4 hover:border-brand-500/20 transition-colors duration-200"
+                >
+                  <div>
+                    <div className="text-sm font-medium text-text-primary">{item.title}</div>
+                    <div className="text-xs text-text-muted mt-0.5">{item.organization}</div>
+                  </div>
+                  <div className="text-xs text-text-muted">{item.year}</div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </section>
   );
 }

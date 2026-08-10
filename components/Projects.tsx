@@ -1,183 +1,130 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowUpRight, FolderKanban, Sparkles } from 'lucide-react';
-import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { featuredProjects, supportingProjects } from './portfolio-data';
 import { useState } from 'react';
-
 import ProjectModal from './ProjectModal';
-import { featuredProjects, supportingProjects, type FeaturedProject } from './portfolio-data';
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-};
+import SupportingProjectModal from './SupportingProjectModal';
+import type { FeaturedProject, SupportingProject } from './portfolio-data';
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<FeaturedProject | null>(null);
+  const [selectedSupporting, setSelectedSupporting] = useState<SupportingProject | null>(null);
 
   return (
-    <section id="projects" className="space-y-10 py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between"
-      >
-        <div className="space-y-4">
-          <p className="section-kicker">Featured work</p>
-          <h2 className="text-4xl font-black text-white sm:text-5xl">
-            Selected systems where the job was to deliver trust, not just screens.
+    <>
+      <section id="work" className="py-24 border-t border-border-subtle">
+        <div className="site-wrap">
+          <p className="font-mono text-xs uppercase tracking-wider text-brand-400 mb-4">Work</p>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-16 text-text-primary">
+            Selected projects
           </h2>
-          <p className="text-lg leading-8 text-slate-300">
-            These are the projects that best represent how I think: clear boundaries, product-aware engineering,
-            production support awareness, and solutions designed to survive real operational pressure.
-          </p>
-        </div>
-        <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] px-5 py-4 text-sm leading-7 text-slate-300 lg:max-w-sm">
-          <div className="mb-2 flex items-center gap-2 font-semibold text-white">
-            <Sparkles size={16} className="text-emerald-300" />
-            Portfolio principle
-          </div>
-          Featured case studies carry most of the visual weight. Supporting projects stay compact so the page reads
-          like a curated profile, not a directory.
-        </div>
-      </motion.div>
 
-      <motion.div variants={container} initial="hidden" whileInView="show" viewport={{ once: true }} className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
-        <div className="grid gap-6">
-          {featuredProjects.map((project, index) => (
-            <motion.article
-              key={project.slug}
-              variants={item}
-              className="group relative overflow-hidden rounded-[2rem] border border-white/[0.08] bg-[#0c1528] p-7 shadow-lg transition hover:-translate-y-0.5 hover:border-emerald-400/25 hover:shadow-xl"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.accent}`} />
-              <div className="relative space-y-6">
-                <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.24em] text-slate-300">
-                  <span className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5">{project.category}</span>
-                  <span>{project.role}</span>
-                  <span>{project.period}</span>
-                </div>
-
-                <div className="space-y-3">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="space-y-3">
-                      <h3 className="max-w-2xl text-2xl font-black text-white sm:text-3xl">{project.title}</h3>
-                      <p className="text-sm uppercase tracking-[0.22em] text-emerald-200/80">{project.ownership}</p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setSelectedProject(project)}
-                      className="rounded-full border border-white/10 bg-black/25 p-3 text-slate-300 transition hover:border-emerald-300/40 hover:text-white"
-                      aria-label={`Open quick view for ${project.title}`}
-                    >
-                      <ArrowUpRight className="transition group-hover:text-white" />
-                    </button>
-                  </div>
-                  <p className="max-w-3xl text-lg leading-8 text-slate-200/90">{project.headline}</p>
-                </div>
-
-                <div className="grid gap-3 sm:grid-cols-3">
-                  {project.metrics.map((metric) => (
-                    <div key={metric.label} className="rounded-2xl border border-white/10 bg-black/20 px-4 py-4">
-                      <div className="text-xl font-bold text-white">{metric.value}</div>
-                      <div className="mt-1 text-[11px] uppercase tracking-[0.24em] text-slate-500">{metric.label}</div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="grid gap-4 lg:grid-cols-[1fr_1.05fr]">
-                  <div className="rounded-[1.5rem] border border-white/10 bg-black/20 p-5">
-                    <div className="mb-3 text-xs uppercase tracking-[0.24em] text-slate-400">Platform and role</div>
-                    <div className="space-y-2">
-                      <p className="text-base font-semibold text-white">{project.platform}</p>
-                      <p className="text-sm leading-7 text-slate-300">{project.summary}</p>
-                    </div>
-                  </div>
-                  <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
-                    <div className="mb-3 text-xs uppercase tracking-[0.24em] text-slate-400">Evidence snapshot</div>
-                    <div className="space-y-3">
-                      {project.evidencePanels.slice(0, 2).map((item) => (
-                        <div key={item.title} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-                          <div className="text-sm font-semibold text-white">{item.title}</div>
-                          <p className="mt-2 text-sm leading-7 text-slate-300">{item.body}</p>
-                        </div>
+          {/* Flagship project — hero card */}
+          <div className="mb-16">
+            {featuredProjects.slice(0, 1).map((project) => (
+              <article
+                key={project.slug}
+                className="group relative rounded-2xl p-8 sm:p-10 transition-all duration-500 bg-gradient-to-br from-brand-500/8 via-base-800/50 to-accent-500/5 border border-brand-500/20 hover:border-brand-500/40 hover:shadow-[0_0_40px_rgba(16,185,129,0.15)]"
+              >
+                <div className="grid gap-8 lg:grid-cols-[1fr_2fr]">
+                  <div className="space-y-4">
+                    <div className="text-sm text-brand-400 font-medium">{project.category}</div>
+                    <div className="text-sm text-text-secondary">{project.role}</div>
+                    <div className="text-sm text-text-muted">{project.period}</div>
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {project.stack.map((tech) => (
+                        <span key={tech} className="border border-border-default rounded-md px-2.5 py-1 text-xs text-text-muted">
+                          {tech}
+                        </span>
                       ))}
                     </div>
                   </div>
-                </div>
 
-                <div className="flex flex-wrap gap-2">
-                  {project.taxonomy.map((item) => (
-                    <span key={item} className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm text-slate-200">
-                      {item}
-                    </span>
-                  ))}
-                </div>
+                  <div className="space-y-5">
+                    <h3 className="text-2xl font-bold text-text-primary">{project.title}</h3>
+                    <p className="text-text-secondary leading-relaxed">{project.headline}</p>
 
-                <div className="flex flex-wrap gap-3">
-                  <Link href={`/case-studies/${project.slug}`} className="inline-flex items-center gap-3 rounded-full bg-[linear-gradient(135deg,#34d399,#38bdf8)] px-6 py-3 text-sm font-bold text-[#021019] shadow-[0_20px_44px_rgba(52,211,153,0.26)] transition hover:-translate-y-0.5 hover:shadow-[0_28px_60px_rgba(52,211,153,0.3)]">
-                    Open full case study
-                    <ArrowUpRight size={18} />
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => setSelectedProject(project)}
-                    className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-slate-200 transition hover:bg-white/[0.08] hover:text-white"
-                  >
-                    Quick view
-                  </button>
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </div>
+                    <div className="flex gap-8 border-y border-border-subtle py-4">
+                      {project.metrics.map((metric) => (
+                        <div key={metric.label}>
+                          <div className="text-lg font-bold text-text-primary">{metric.value}</div>
+                          <div className="text-xs text-text-muted mt-0.5">{metric.label}</div>
+                        </div>
+                      ))}
+                    </div>
 
-        <motion.aside variants={item} className="section-panel h-fit">
-          <div className="mb-6 flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-emerald-200">
-              <FolderKanban size={20} />
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-white">Supporting projects</h3>
-              <p className="text-sm text-slate-400">Compact signals of breadth without stealing focus.</p>
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            {supportingProjects.map((project) => (
-              <div key={project.title} className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
-                <div className="mb-2 flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.24em] text-slate-500">
-                  <span>{project.category}</span>
-                  <span className="text-slate-600">•</span>
-                  <span>{project.role}</span>
+                    <button
+                      onClick={() => setSelectedProject(project)}
+                      className="inline-flex items-center gap-2 text-sm text-brand-400 hover:gap-3 transition-all duration-200"
+                    >
+                      Read case study <ArrowUpRight size={14} />
+                    </button>
+                  </div>
                 </div>
-                <div className="text-lg font-semibold text-white">{project.title}</div>
-                <p className="mt-2 text-sm font-medium text-emerald-100">{project.outcome}</p>
-                <p className="mt-2 text-sm leading-7 text-slate-400">{project.note}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.taxonomy.map((item) => (
-                    <span key={item} className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-xs text-slate-300">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </article>
             ))}
           </div>
-        </motion.aside>
-      </motion.div>
 
-      <AnimatePresence>
-        {selectedProject ? <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} /> : null}
-      </AnimatePresence>
-    </section>
+          {/* Supporting projects — 2-column grid */}
+          <div className="mb-12">
+            <p className="text-sm text-text-muted mb-6">Other featured projects</p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {featuredProjects.slice(1).map((project) => (
+                <button
+                  key={project.slug}
+                  onClick={() => setSelectedProject(project)}
+                  className="group text-left rounded-xl p-6 transition-all duration-300 bg-gradient-to-br from-brand-500/5 to-accent-500/3 border border-brand-500/15 hover:border-brand-500/40 hover:shadow-[0_0_30px_rgba(16,185,129,0.12)]"
+                >
+                  <div className="text-xs text-brand-400 font-medium mb-2">{project.category}</div>
+                  <div className="text-base font-medium text-text-primary mb-1">{project.title}</div>
+                  <p className="text-sm text-text-muted line-clamp-2">{project.headline}</p>
+                  <div className="flex items-center gap-1 text-xs text-brand-400 mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View details <ArrowUpRight size={12} />
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Supporting projects list */}
+          <div className="pt-12" style={{ borderTop: '1px solid transparent', borderImage: 'linear-gradient(90deg, transparent, rgba(16,185,129,0.2), rgba(59,130,246,0.2), transparent) 1' }}>
+            <p className="text-sm text-brand-400 mb-6 font-medium">Other projects</p>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {supportingProjects.map((project) => (
+                <button
+                  key={project.title}
+                  onClick={() => setSelectedSupporting(project)}
+                  className="group text-left rounded-lg p-4 transition-all duration-300 bg-gradient-to-br from-base-800/50 to-brand-500/5 border border-brand-500/10 hover:border-brand-500/30 hover:shadow-[0_0_20px_rgba(16,185,129,0.1)]"
+                >
+                  <div className="text-xs text-brand-400 font-medium mb-1">{project.category}</div>
+                  <div className="text-sm font-medium text-text-primary group-hover:text-brand-300 transition-colors">{project.title}</div>
+                  <p className="text-xs text-text-muted mt-1">{project.outcome}</p>
+                  <div className="flex items-center gap-1 text-xs text-brand-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View details <ArrowUpRight size={10} />
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Project Modal */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
+
+      {/* Supporting Project Modal */}
+      {selectedSupporting && (
+        <SupportingProjectModal
+          project={selectedSupporting}
+          onClose={() => setSelectedSupporting(null)}
+        />
+      )}
+    </>
   );
 }

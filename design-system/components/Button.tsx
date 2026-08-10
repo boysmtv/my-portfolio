@@ -11,18 +11,18 @@ type ButtonProps = {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'inline-flex items-center justify-center gap-3 rounded-full bg-[linear-gradient(135deg,rgba(56,189,248,1),rgba(52,211,153,0.95))] text-[#021019] font-extrabold shadow-[0_20px_44px_rgba(14,165,233,0.26)] hover:-translate-y-px hover:shadow-[0_28px_60px_rgba(14,165,233,0.3)] transition-all duration-250',
+    'inline-flex items-center justify-center gap-3 rounded-lg bg-brand-500 text-white font-medium shadow-glow-emerald hover:bg-brand-600 transition-all duration-200',
   secondary:
-    'inline-flex items-center justify-center gap-3 rounded-full border border-white/10 bg-white/[0.04] text-slate-200 font-semibold hover:bg-white/[0.08] hover:text-white transition-all duration-250',
+    'inline-flex items-center justify-center gap-3 rounded-lg border border-border-default bg-transparent text-text-primary font-medium hover:bg-white/5 transition-all duration-200',
   ghost:
-    'inline-flex items-center justify-center gap-3 text-slate-300 hover:text-white transition-all duration-250',
-  icon: 'inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 hover:text-white hover:border-sky-300/40 hover:bg-sky-400/8 transition-all duration-250',
+    'inline-flex items-center justify-center gap-3 text-text-secondary hover:text-text-primary transition-all duration-200',
+  icon: 'inline-flex items-center justify-center rounded-full border border-border-default bg-transparent text-text-secondary hover:text-text-primary hover:border-brand-500/40 transition-all duration-200',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
   sm: 'px-4 py-2 text-sm',
-  md: 'px-5 py-4 text-base',
-  lg: 'px-7 py-4 text-lg',
+  md: 'px-5 py-3 text-sm',
+  lg: 'px-6 py-3 text-base',
 };
 
 export function Button({ variant = 'primary', size = 'md', children, className = '', ...props }: ButtonProps) {

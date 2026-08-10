@@ -7,11 +7,11 @@ type TextProps = {
 } & React.HTMLAttributes<HTMLElement>;
 
 const variantStyles: Record<TextVariant, string> = {
-  'body': 'text-base leading-8 text-slate-300',
-  'body-lg': 'text-lg leading-8 text-slate-300 sm:text-xl',
-  'caption': 'text-xs uppercase tracking-[0.24em] text-slate-500',
-  'label': 'text-xs uppercase tracking-[0.26em] text-slate-400',
-  'kicker': 'text-sm uppercase tracking-[0.3em] text-sky-300 font-bold',
+  'body': 'text-base leading-relaxed text-text-secondary',
+  'body-lg': 'text-lg leading-relaxed text-text-secondary',
+  'caption': 'text-xs uppercase tracking-wider text-text-muted font-mono',
+  'label': 'text-xs uppercase tracking-wider text-text-muted font-mono',
+  'kicker': 'text-sm uppercase tracking-wider text-brand-400 font-medium font-mono',
 };
 
 export function Text({ variant = 'body', children, className = '', as, ...props }: TextProps) {

@@ -1,105 +1,76 @@
-import { ArrowUpRight, Github, Linkedin, Mail, Phone } from 'lucide-react';
+'use client';
 
+import { Mail, MapPin, ArrowUpRight } from 'lucide-react';
 import { siteSummary } from './portfolio-data';
 
-const contactCards = [
-  {
-    icon: Mail,
-    label: 'Email',
-    value: siteSummary.contactEmail,
-    href: `mailto:${siteSummary.contactEmail}`,
-  },
-  {
-    icon: Phone,
-    label: 'Phone',
-    value: siteSummary.phone,
-    href: `tel:${siteSummary.phone}`,
-  },
-  {
-    icon: Linkedin,
-    label: 'LinkedIn',
-    value: 'Connect professionally',
-    href: siteSummary.linkedin,
-  },
-  {
-    icon: Github,
-    label: 'GitHub',
-    value: 'Review code and repositories',
-    href: siteSummary.github,
-  },
-];
-
 export default function ContactSection() {
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(siteSummary.contactEmail);
+    } catch {
+      // Fallback: do nothing
+    }
+  };
+
   return (
-    <section id="contact" className="space-y-8 py-12">
-      <div className="space-y-4">
-        <p className="section-kicker">Contact</p>
-        <h2 className="text-4xl font-black text-white sm:text-5xl">
-          If the problem is delivery under pressure, architecture clarity, or production discipline, let&apos;s talk.
-        </h2>
-        <p className="text-lg leading-8 text-slate-300">
-          I am most useful when the system has real runtime constraints, engineering decisions need to be explained
-          clearly, and the team needs someone who can stabilize both delivery and operations.
-        </p>
+    <section id="contact" className="py-24 relative overflow-hidden" style={{ borderTop: '1px solid transparent', borderImage: 'linear-gradient(90deg, transparent, rgba(16,185,129,0.3), rgba(59,130,246,0.3), transparent) 1' }}>
+      {/* Background glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-1/3 h-1/2 bg-brand-500/5 rounded-full blur-[100px]" />
+        <div className="absolute bottom-0 right-1/4 w-1/4 h-1/2 bg-accent-500/4 rounded-full blur-[80px]" />
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
-        <div className="section-panel space-y-5">
-          <div className="space-y-3">
-            <div className="text-xs uppercase tracking-[0.24em] text-slate-500">Availability</div>
-            <h3 className="text-2xl font-semibold text-white">Open to technical lead and senior engineer conversations.</h3>
-            <p className="text-sm leading-7 text-slate-300">
-              Best fit: fintech, payment systems, Android delivery, backend integration, enterprise platforms, or
-              operations-heavy products where reliability matters as much as features.
-            </p>
-          </div>
+      <div className="site-wrap relative">
+        <p className="font-mono text-xs uppercase tracking-wider text-brand-400 mb-4">Contact</p>
+        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-16">
+          <span className="bg-gradient-to-r from-white to-brand-200 bg-clip-text text-transparent">Let&apos;s connect</span>
+        </h2>
 
-          <div className="grid gap-3 sm:grid-cols-2">
-            {contactCards.map((card) => {
-              const Icon = card.icon;
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Email */}
+          <a
+            href={`mailto:${siteSummary.contactEmail}`}
+            className="group rounded-xl p-6 transition-all duration-300 bg-gradient-to-br from-brand-500/8 to-transparent border border-brand-500/15 hover:border-brand-500/40 hover:shadow-[0_0_30px_rgba(16,185,129,0.15)]"
+          >
+            <Mail size={20} className="text-brand-400 mb-4" />
+            <div className="text-sm font-medium text-text-primary mb-1">Email</div>
+            <div className="text-sm text-text-secondary">{siteSummary.contactEmail}</div>
+            <div className="flex items-center gap-3 mt-3">
+              <span className="flex items-center gap-1 text-xs text-brand-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                Send email <ArrowUpRight size={12} />
+              </span>
+              <button
+                onClick={(e) => { e.preventDefault(); copyEmail(); }}
+                className="text-xs text-text-muted hover:text-brand-400 transition-colors"
+              >
+                Copy
+              </button>
+            </div>
+          </a>
 
-              return (
-                <a
-                  key={card.label}
-                  href={card.href}
-                  target={card.href.startsWith('http') ? '_blank' : undefined}
-                  rel={card.href.startsWith('http') ? 'noreferrer' : undefined}
-                  className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5 transition hover:border-emerald-300/30 hover:bg-white/[0.05]"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-400/20 bg-emerald-400/10 text-emerald-200">
-                      <Icon size={18} />
-                    </div>
-                    <ArrowUpRight size={18} className="text-slate-500" />
-                  </div>
-                  <div className="mt-4 text-xs uppercase tracking-[0.24em] text-slate-500">{card.label}</div>
-                  <div className="mt-2 text-base font-semibold text-white">{card.value}</div>
-                </a>
-              );
-            })}
-          </div>
-        </div>
+          {/* LinkedIn */}
+          <a
+            href={siteSummary.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group rounded-xl p-6 transition-all duration-300 bg-gradient-to-br from-accent-500/8 to-transparent border border-accent-500/15 hover:border-accent-500/40 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]"
+          >
+            <svg className="w-5 h-5 text-accent-400 mb-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+            <div className="text-sm font-medium text-text-primary mb-1">LinkedIn</div>
+            <div className="text-sm text-text-secondary">Connect with me</div>
+            <div className="flex items-center gap-1 text-xs text-accent-400 mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
+              Visit profile <ArrowUpRight size={12} />
+            </div>
+          </a>
 
-        <div className="section-panel space-y-5">
-          <div>
-            <div className="text-xs uppercase tracking-[0.24em] text-slate-500">What to reach out for</div>
-            <h3 className="mt-2 text-2xl font-semibold text-white">The strongest collaboration fit is practical, high-trust work.</h3>
-          </div>
-
-          <div className="space-y-3">
-            {[
-              'Stabilizing payment flows, Android platforms, backend integrations, or operationally sensitive systems.',
-              'Leading architecture and delivery tradeoffs where uptime, security, and maintainability matter together.',
-              'Turning ambiguous requirements into clear technical direction that product, engineering, and operations can all follow.',
-            ].map((item) => (
-              <div key={item} className="rounded-[1.4rem] border border-white/10 bg-black/20 p-4 text-sm leading-7 text-slate-300">
-                {item}
-              </div>
-            ))}
-          </div>
-
-          <div className="rounded-[1.4rem] border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm leading-7 text-white/80">
-            Response path: email is the fastest route for role discussions, collaboration, or architecture conversations.
+          {/* Location */}
+          <div className="rounded-xl p-6 bg-gradient-to-br from-highlight-500/5 to-transparent border border-highlight-500/15">
+            <MapPin size={20} className="text-highlight-400 mb-4" />
+            <div className="text-sm font-medium text-text-primary mb-1">Location</div>
+            <div className="text-sm text-text-secondary">{siteSummary.location}</div>
+            <div className="text-xs text-text-muted mt-3">Open to remote &amp; hybrid</div>
           </div>
         </div>
       </div>

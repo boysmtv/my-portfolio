@@ -42,15 +42,17 @@ export type SupportingProject = {
 export const proofChips = [
   "6+ years in fintech delivery",
   "ISO8583 / JPOS payment systems",
-  "Android + backend architecture",
+  "Kotlin, MVVM, Clean Architecture",
   "Production incident ownership",
+  "Team leadership (5+ engineers)",
+  "Spring Boot backend integration",
 ];
 
 export const heroMetrics = [
-  { value: "20+", label: "projects delivered" },
-  { value: "500+", label: "branch and field surfaces touched" },
-  { value: "99.9%", label: "availability target handled" },
-  { value: "L2/L3", label: "operational support depth" },
+  { value: "6+", label: "years in fintech" },
+  { value: "5", label: "companies delivered" },
+  { value: "99.9%", label: "uptime achieved" },
+  { value: "L2/L3", label: "support depth" },
 ];
 
 export const featuredProjects: FeaturedProject[] = [
@@ -272,6 +274,51 @@ export const supportingProjects: SupportingProject[] = [
   },
 ];
 
+export const profileSummary = {
+  role: "Senior Android Engineer & Technical Lead | Fintech & Payment Systems Specialist",
+  elevatorPitch: "I build production-grade mobile and backend systems in fintech and banking environments. My work spans payment infrastructure, Android applications, and backend integrations for Indonesia's largest financial institutions.",
+  technicalDifferentiator: "I combine Android expertise with backend engineering depth. I can design a Jetpack Compose UI and implement the ISO8583 message handler behind it. This full-stack visibility means fewer handoff errors and faster delivery.",
+  leadershipStyle: "I lead by reducing complexity. My teams ship faster because we invest in observability, modularity, and operational clarity from day one.",
+};
+
+export const careerSummary = [
+  { period: "Nov 2023 — Present", title: "Senior Android Developer", company: "PT Ikonsultan Inovatama (Project: Bank Maybank Indonesia)", scope: "Developed scalable Android applications using Kotlin and MVVM, integrated payment backend systems, resolved critical production issues, and collaborated cross-team to optimize transaction processing latency." },
+  { period: "Nov 2022 — Oct 2023", title: "Senior Android Developer", company: "PT Jasa Teknologi Informasi / IBM (Project: Bank Mandiri)", scope: "Built and maintained Android applications with scalable architecture (MVVM, Single Activity, Hilt/Dagger), improved application reliability by resolving high-impact production issues, and integrated backend APIs using Retrofit/OkHttp." },
+  { period: "Mar 2022 — Oct 2022", title: "Senior Fullstack Android Developer", company: "PT Pintar Inovasi Digital (Asetku)", scope: "Re-architected fintech mobile application using Kotlin, MVVM, Coroutines, Flow/StateFlow, designed and developed backend services and REST APIs using Kotlin & Spring Boot for core business features." },
+  { period: "Mar 2021 — Feb 2022", title: "Technical Lead Developer", company: "PT Aplikanusa Lintasarta", scope: "Led team of 5 engineers delivering E-KYC system on time with 99.9% uptime, designed scalable system architecture, conducted security testing including vulnerability assessment and penetration testing." },
+  { period: "Sep 2019 — May 2021", title: "Fullstack Android Developer", company: "PT Pasifik Cipta Solusi", scope: "Developed Android and backend systems for payment services and financial transactions, implemented ISO8583-based transaction systems using Java Spring Boot + JPOS library for real-time payment processing (BRI/BNI)." },
+];
+
+export const education = [
+  { degree: "Bachelor of Computer Science", institution: "Universitas Negeri Singaperbangsa Karawang", year: "2019", gpa: "3.49 / 4.00" },
+];
+
+export const certifications = [
+  { name: "Kubernetes & Docker Fundamentals", issuer: "Professional Development", year: "2023" },
+  { name: "Scrum & Agile Practices", issuer: "Professional Development", year: "2023" },
+  { name: "SOLID Principles & Software Architecture", issuer: "Professional Development", year: "2023" },
+  { name: "Advanced Kotlin & Android Development", issuer: "Professional Development", year: "2023" },
+  { name: "Spring Boot Backend Development", issuer: "Professional Development", year: "2023" },
+  { name: "Android Development Bootcamp", issuer: "Udemy", year: "2023" },
+  { name: "Kotlin for Android Development", issuer: "Udemy", year: "2023" },
+  { name: "Java Programming Masterclass", issuer: "Udemy", year: "2023" },
+  { name: "Flutter Development Fundamentals", issuer: "Professional Development", year: "2023" },
+  { name: "REST API Development with Spring Boot", issuer: "Professional Development", year: "2023" },
+  { name: "Microservices Architecture Fundamentals", issuer: "Professional Development", year: "2023" },
+  { name: "Secure Coding Practices and Application Security", issuer: "Professional Development", year: "2023" },
+];
+
+export const achievements = [
+  { title: "E-KYC System Delivery", organization: "PT Aplikanusa Lintasarta", year: "2022", detail: "Led team of 5 engineers, delivering E-KYC system on time with 99.9% uptime" },
+  { title: "ISO8583 Payment Integration", organization: "PT Pasifik Cipta Solusi", year: "2020", detail: "Implemented ISO8583-based transaction systems using Java Spring Boot + JPOS library for real-time payment processing (BRI/BNI)" },
+];
+
+export const organizations = [
+  { role: "Bendahara (Treasurer)", organization: "Komisi Pemilihan Umum Mahasiswa", period: "Jan 2018 — Jan 2019" },
+  { role: "Anggota Komisi C", organization: "Badan Legislatif Mahasiswa Universitas", period: "Jan 2017 — Jan 2018" },
+  { role: "Network Administrator", organization: "Laboratorium Fakultas Ilmu Komputer", period: "Jul 2017 — May 2019" },
+];
+
 export const siteSummary = {
   title: "Dedy Wijaya",
   description:
@@ -280,6 +327,8 @@ export const siteSummary = {
   phone: "08158844424",
   github: "https://github.com/boysmtv",
   linkedin: "https://www.linkedin.com/in/dedy-wijaya-421698196/",
+  website: "https://dsrv-developer.my.id",
+  location: "Bekasi, Indonesia",
 };
 
 export function getFeaturedProjectBySlug(slug: string) {

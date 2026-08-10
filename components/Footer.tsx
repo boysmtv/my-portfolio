@@ -1,30 +1,31 @@
-import Link from 'next/link';
-
 import { siteSummary } from './portfolio-data';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-slate-950/80">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-10 sm:px-10 lg:flex-row lg:items-end lg:justify-between lg:px-14">
-        <div className="space-y-2">
-          <p className="text-xs uppercase tracking-[0.26em] text-sky-300">Dedy Wijaya</p>
-          <h2 className="text-2xl font-black text-white">Technical Lead · Android · Backend · Payments</h2>
-          <p className="max-w-2xl text-sm leading-7 text-slate-400">
-            Portfolio focused on engineering credibility, project clarity, and systems that remain dependable after
-            release.
-          </p>
-        </div>
-        <div className="space-y-2 text-sm leading-7 text-slate-400 lg:text-right">
-          <Link href="/contact" className="block text-slate-200 transition hover:text-white">
-            Jump to contact
-          </Link>
-          <a href={`mailto:${siteSummary.contactEmail}`} className="block transition hover:text-white">
-            {siteSummary.contactEmail}
-          </a>
-          <a href={`tel:${siteSummary.phone}`} className="block transition hover:text-white">
-            {siteSummary.phone}
-          </a>
-          <p className="pt-3 text-xs uppercase tracking-[0.22em] text-slate-500">© {new Date().getFullYear()} Dedy Wijaya</p>
+    <footer className="relative overflow-hidden" style={{ borderTop: '1px solid transparent', borderImage: 'linear-gradient(90deg, transparent, rgba(16,185,129,0.2), rgba(59,130,246,0.2), transparent) 1' }}>
+      {/* Background glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute bottom-0 left-1/3 w-1/4 h-1/2 bg-brand-500/3 rounded-full blur-[80px]" />
+      </div>
+
+      <div className="site-wrap relative py-16">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+          <div>
+            <div className="font-mono text-xs text-brand-400 mb-2">Dedy Wijaya</div>
+            <div className="text-lg font-medium">
+              <span className="bg-gradient-to-r from-brand-400 to-accent-400 bg-clip-text text-transparent">Technical Lead</span>
+              <span className="text-text-muted"> &middot; </span>
+              <span className="text-text-primary">Android</span>
+              <span className="text-text-muted"> &middot; </span>
+              <span className="text-text-primary">Payments</span>
+            </div>
+          </div>
+          <div className="text-sm text-text-muted">
+            <a href={`mailto:${siteSummary.contactEmail}`} className="hover:text-brand-400 transition-colors">
+              {siteSummary.contactEmail}
+            </a>
+            <div className="mt-1 text-xs">&copy; {new Date().getFullYear()} Dedy Wijaya</div>
+          </div>
         </div>
       </div>
     </footer>

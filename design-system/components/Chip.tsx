@@ -5,14 +5,14 @@ type ChipProps = {
 };
 
 const variantStyles = {
-  default: 'border-white/10 bg-slate-950/55 text-slate-300',
-  outlined: 'border-white/10 bg-white/[0.04] text-slate-200',
-  signal: 'border-white/10 bg-slate-950/60 text-slate-300',
+  default: 'border-border-default bg-base-800/50 text-text-secondary',
+  outlined: 'border-border-default bg-transparent text-text-primary',
+  signal: 'border-border-subtle bg-base-900/50 text-text-secondary',
 };
 
 export function Chip({ children, variant = 'default', className = '' }: ChipProps) {
   return (
-    <span className={`rounded-full border px-3 py-2 text-sm ${variantStyles[variant]} ${className}`}>
+    <span className={`rounded-full border px-3 py-1.5 text-sm ${variantStyles[variant]} ${className}`}>
       {children}
     </span>
   );

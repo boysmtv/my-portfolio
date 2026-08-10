@@ -1,112 +1,75 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-
 import { featuredProjects } from './portfolio-data';
 
-const featuredBreakdown = featuredProjects[0];
+const p = featuredProjects[0];
 
 export default function CaseStudy() {
   return (
-    <section id="case-study" className="space-y-8 py-12">
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="space-y-4"
-      >
-        <p className="section-kicker">Case study breakdown</p>
-        <h2 className="text-4xl font-black text-white sm:text-5xl">
-          One project, seen the way a hiring manager or client actually reads engineering ownership.
+    <section id="case-study" className="py-24 bg-base-800/30 border-t border-border-subtle">
+      <div className="site-wrap">
+        <p className="font-mono text-xs uppercase tracking-wider text-brand-400 mb-4">Case Study</p>
+        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-16 text-text-primary">
+          One project, deep dive
         </h2>
-        <p className="text-lg leading-8 text-slate-300">
-          Instead of staying generic, this section breaks down the strongest signal from my payments work:
-          production-grade delivery under operational pressure, with architecture choices shaped by incident reality.
-        </p>
-      </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="section-panel overflow-hidden"
-      >
-        <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
-          <div className="space-y-5">
-            <div className="space-y-2">
-              <p className="text-xs uppercase tracking-[0.26em] text-emerald-300">{featuredBreakdown.category}</p>
-              <h3 className="text-3xl font-black text-white">{featuredBreakdown.title}</h3>
-              <p className="text-base uppercase tracking-[0.18em] text-slate-400">{featuredBreakdown.ownership}</p>
+        <div className="grid gap-12 xl:grid-cols-[1fr_1.3fr]">
+          {/* Left — Narrative */}
+          <div className="space-y-8">
+            <div>
+              <div className="text-sm text-brand-400 font-medium mb-2">{p.category}</div>
+              <h3 className="text-2xl font-bold text-text-primary">{p.title}</h3>
+              <p className="text-sm text-text-secondary mt-2">{p.ownership}</p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.03] p-6">
-                <div className="mb-3 text-sm uppercase tracking-[0.26em] text-emerald-300">Problem</div>
-                <p className="text-base leading-8 text-slate-300">
-                  Legacy banking transaction flows needed low-latency processing, safer recovery behavior, and a
-                  structure that engineers could actually debug during incidents.
-                </p>
-              </div>
-              <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.03] p-6">
-                <div className="mb-3 text-sm uppercase tracking-[0.26em] text-emerald-300">Approach</div>
-                <p className="text-base leading-8 text-slate-300">
-                  Use modular transaction boundaries, stable message handling, and support-aware architecture choices
-                  so runtime issues become diagnosable instead of mysterious.
-                </p>
-              </div>
-              <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.03] p-6">
-                <div className="mb-3 text-sm uppercase tracking-[0.26em] text-emerald-300">Tradeoff</div>
-                <p className="text-base leading-8 text-slate-300">
-                  In payment systems, velocity is not enough. The stronger choice is often the one that improves
-                  operability, not the one that only adds features fastest.
-                </p>
-              </div>
-              <div className="rounded-[1.6rem] border border-white/10 bg-white/[0.03] p-6">
-                <div className="mb-3 text-sm uppercase tracking-[0.26em] text-emerald-300">Impact</div>
-                <p className="text-base leading-8 text-slate-300">
-                  Fewer runtime surprises, stronger reuse across related integrations, and a delivery posture that
-                  better respects transaction risk and production ownership.
-                </p>
-              </div>
+              {[
+                { label: 'Problem', body: 'Legacy banking transaction flows needed low-latency processing, safer recovery, and debuggable structure during incidents.' },
+                { label: 'Approach', body: 'Modular transaction boundaries, stable message handling, and support-aware architecture for diagnosable runtime issues.' },
+                { label: 'Tradeoff', body: 'Velocity is not enough. The stronger choice improves operability, not just feature speed.' },
+                { label: 'Impact', body: 'Fewer runtime surprises, stronger reuse, and a delivery posture that respects transaction risk.' },
+              ].map((item) => (
+                <div key={item.label} className="border border-border-subtle rounded-lg p-5 bg-base-900/50">
+                  <div className="text-xs text-brand-400 font-medium mb-2">{item.label}</div>
+                  <p className="text-sm text-text-secondary leading-relaxed">{item.body}</p>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="space-y-5">
-            <div className="rounded-[1.7rem] border border-white/10 bg-black/20 p-6">
-              <div className="mb-3 text-sm uppercase tracking-[0.24em] text-slate-400">What this shows</div>
+          {/* Right — Evidence */}
+          <div className="space-y-6">
+            <div className="border border-border-subtle rounded-lg p-6 bg-base-900/50">
+              <div className="text-sm font-medium text-text-primary mb-3">What this shows</div>
               <div className="space-y-3">
-                {featuredBreakdown.impact.map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4 text-sm leading-7 text-slate-300">
+                {p.impact.map((item) => (
+                  <div key={item} className="flex gap-3 text-sm text-text-secondary">
+                    <span className="text-brand-400 mt-0.5">&#8594;</span>
                     {item}
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="rounded-[1.7rem] border border-white/10 bg-black/20 p-6">
-              <div className="mb-3 text-sm uppercase tracking-[0.24em] text-slate-400">Evidence panels</div>
-              <div className="space-y-3">
-                {featuredBreakdown.evidencePanels.map((item) => (
-                  <div key={item.title} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-                    <div className="text-base font-semibold text-white">{item.title}</div>
-                    <p className="mt-2 text-sm leading-7 text-slate-300">{item.body}</p>
-                  </div>
+            <div className="border border-border-subtle rounded-lg p-6 bg-base-900/50">
+              <div className="text-sm font-medium text-text-primary mb-3">Key decisions</div>
+              <div className="space-y-2">
+                {p.decisions.map((item) => (
+                  <div key={item} className="text-sm text-text-secondary">{item}</div>
                 ))}
               </div>
             </div>
 
-            <Link
-              href={`/case-studies/${featuredBreakdown.slug}`}
-              className="inline-flex items-center gap-3 rounded-full bg-[linear-gradient(135deg,#34d399,#38bdf8)] px-6 py-3 text-sm font-bold text-[#021019] shadow-[0_20px_44px_rgba(52,211,153,0.26)] transition hover:-translate-y-0.5 hover:shadow-[0_28px_60px_rgba(52,211,153,0.3)]"
-            >
-              Read full {featuredBreakdown.title} case study
-            </Link>
+            <div className="flex flex-wrap gap-3">
+              {p.stack.map((tech) => (
+                <span key={tech} className="border border-border-default rounded-md px-3 py-1.5 text-xs text-text-muted">
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

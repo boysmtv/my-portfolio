@@ -1,38 +1,52 @@
-@import './tokens/index.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
-html {
-  scroll-behavior: smooth;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--color-base-900);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-normal);
+  }
+
+  ::selection {
+    background: rgba(16, 185, 129, 0.3);
+    color: var(--color-text-primary);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-base-900);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-base-600);
+    border-radius: var(--radius-full);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-base-500);
+  }
+
+  /* Focus ring */
+  *:focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
 }
 
-body {
-  color: var(--color-text-primary);
-  min-height: 100vh;
-  background: var(--gradient-background);
-  font-family: var(--font-body);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
-
-::selection {
-  background: rgba(56, 189, 248, 0.25);
-  color: var(--color-white);
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-base-950);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-base-700);
-  border-radius: var(--radius-full);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-base-600);
-}
-
-

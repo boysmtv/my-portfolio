@@ -1,49 +1,30 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import { siteSummary } from "@/components/portfolio-data";
-
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://dedywijaya.com";
+const siteUrl = "https://dedywijaya.dev";
 
 export const metadata: Metadata = {
+  title: "Dedy Wijaya — Technical Lead, Android & Payments",
+  description:
+    "Portfolio of Dedy Wijaya, Technical Lead specializing in Android platforms and payment infrastructure for Indonesia's largest financial institutions.",
   metadataBase: new URL(siteUrl),
-  title: "Dedy Wijaya | Technical Lead for Fintech, Android, and Payment Systems",
-  description: siteSummary.description,
-  keywords: [
-    "Dedy Wijaya",
-    "Technical Lead",
-    "Fintech engineer",
-    "Android developer",
-    "Backend integration",
-    "Payment systems",
-    "ISO8583",
-    "JPOS",
-    "Engineering portfolio",
-  ],
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
-    title: "Dedy Wijaya | Technical Lead for Fintech, Android, and Payment Systems",
-    description: siteSummary.description,
+    title: "Dedy Wijaya — Technical Lead, Android & Payments",
+    description:
+      "Portfolio of Dedy Wijaya, Technical Lead specializing in Android platforms and payment infrastructure.",
+    images: ["/images/og-placeholder.png"],
     type: "website",
-    siteName: "Dedy Wijaya Portfolio",
     url: siteUrl,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dedy Wijaya | Technical Lead for Fintech, Android, and Payment Systems",
-    description: siteSummary.description,
+    images: ["/images/og-placeholder.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -52,39 +33,41 @@ const jsonLd = {
   "@type": "Person",
   name: "Dedy Wijaya",
   url: siteUrl,
-  jobTitle: "Technical Lead",
-  email: siteSummary.contactEmail,
-  telephone: siteSummary.phone,
-  sameAs: [siteSummary.github, siteSummary.linkedin],
+  jobTitle: "Technical Lead, Android & Payments",
+  sameAs: [
+    "https://github.com/boysmtv",
+    "https://www.linkedin.com/in/dedy-wijaya-421698196/",
+  ],
   knowsAbout: [
-    "Fintech",
-    "Payment Systems",
     "Android Development",
-    "Backend Integration",
+    "Payment Infrastructure",
+    "Kotlin",
+    "Java",
+    "Spring Boot",
     "ISO8583",
-    "JPOS",
-    "System Architecture",
-    "Production Operations",
+    "Fintech",
   ],
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>
+      <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+      </head>
+      <body className="min-h-screen antialiased">
         <a href="#main-content" className="skip-to-content">
-          Skip to main content
+          Skip to content
         </a>
         <Navbar />
-        <main id="main-content" className="flex min-h-screen flex-col overflow-x-hidden">{children}</main>
+        <main id="main-content">{children}</main>
         <Footer />
       </body>
     </html>

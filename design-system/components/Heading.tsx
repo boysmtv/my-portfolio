@@ -7,11 +7,11 @@ type HeadingProps = {
 } & React.HTMLAttributes<HTMLHeadingElement>;
 
 const levelStyles: Record<HeadingLevel, string> = {
-  display: 'text-6xl sm:text-8xl font-black leading-[0.95] text-white',
-  h1: 'text-4xl sm:text-5xl font-black leading-[0.95] text-white',
-  h2: 'text-4xl sm:text-5xl font-black text-white',
-  h3: 'text-3xl font-black text-white',
-  h4: 'text-2xl font-bold text-white',
+  display: 'text-5xl sm:text-7xl font-bold tracking-tight leading-[1.1] text-text-primary',
+  h1: 'text-4xl sm:text-5xl font-bold tracking-tight text-text-primary',
+  h2: 'text-3xl sm:text-4xl font-bold tracking-tight text-text-primary',
+  h3: 'text-2xl font-bold text-text-primary',
+  h4: 'text-xl font-medium text-text-primary',
 };
 
 export function Heading({ level = 'h2', children, className = '', as, ...props }: HeadingProps) {

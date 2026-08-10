@@ -1,10 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUpRight, BriefcaseBusiness, Target, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, X } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect } from 'react';
-
+import { useEffect, useRef } from 'react';
 import { featuredProjects, type FeaturedProject } from './portfolio-data';
 
 export default function ProjectModal({
@@ -15,200 +13,149 @@ export default function ProjectModal({
   onClose: () => void;
 }) {
   const index = featuredProjects.findIndex((item) => item.slug === project.slug);
-  const previousProject = index > 0 ? featuredProjects[index - 1] : null;
-  const nextProject = index >= 0 && index < featuredProjects.length - 1 ? featuredProjects[index + 1] : null;
+  const prev = index > 0 ? featuredProjects[index - 1] : null;
+  const next = index >= 0 && index < featuredProjects.length - 1 ? featuredProjects[index + 1] : null;
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
+    previousActiveElement.current = document.activeElement as HTMLElement;
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      // Focus trap
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     };
 
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    window.addEventListener('keydown', handleKey);
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleKey);
+      document.body.style.overflow = '';
+      previousActiveElement.current?.focus();
+    };
   }, [onClose]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6"
+    <div
+      ref={modalRef}
+      className="fixed inset-0 z-modal flex items-center justify-center p-4 sm:p-6"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="project-modal-title"
+      aria-label={`${project.title} case study`}
     >
-      <div className="absolute inset-0 bg-slate-950/92 backdrop-blur-xl" onClick={onClose} />
+      <div className="absolute inset-0 bg-base-900/95 backdrop-blur-sm" onClick={onClose} />
 
-      <motion.div
-        initial={{ scale: 0.96, y: 18, opacity: 0 }}
-        animate={{ scale: 1, y: 0, opacity: 1 }}
-        exit={{ scale: 0.96, y: 18, opacity: 0 }}
-        className="relative max-h-[92vh] w-full max-w-6xl overflow-hidden rounded-[2rem] border border-white/10 bg-[#07111b] shadow-[0_35px_120px_rgba(2,6,23,0.85)]"
-        onClick={(event) => event.stopPropagation()}
-      >
+      <div className="relative max-h-[92vh] w-full max-w-5xl overflow-y-auto border border-border-subtle rounded-2xl bg-base-900">
         <button
           onClick={onClose}
-          className="absolute right-5 top-5 z-20 rounded-full border border-white/10 bg-black/30 p-3 text-white transition hover:bg-white/10"
-          aria-label="Close project quick view"
+          className="absolute right-4 top-4 z-20 border border-border-default p-2 text-text-primary hover:border-brand-500 hover:text-brand-400 transition-colors duration-200 rounded-lg"
+          aria-label="Close"
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
-        <div className={`absolute inset-0 bg-gradient-to-br ${project.accent}`} />
-        <div className="relative max-h-[92vh] overflow-y-auto">
-          <div className="border-b border-white/10 px-8 py-10 sm:px-12 sm:py-12">
-            <p className="mb-3 text-xs uppercase tracking-[0.3em] text-sky-200/80">{project.category}</p>
-            <h2 id="project-modal-title" className="max-w-4xl text-3xl font-black leading-tight text-white sm:text-5xl">
-              {project.title}
-            </h2>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200/90">{project.headline}</p>
-            <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-200/80">
-              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">{project.role}</span>
-              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">{project.period}</span>
-              <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2">{project.platform}</span>
+        {/* Header */}
+        <div className="border-b border-border-subtle px-8 py-10">
+          <div className="font-mono text-xs uppercase tracking-wider text-brand-400 mb-3">{project.category}</div>
+          <h2 className="text-3xl font-bold text-text-primary">{project.title}</h2>
+          <p className="mt-3 max-w-3xl text-text-secondary">{project.headline}</p>
+          <div className="mt-4 flex flex-wrap gap-2 font-mono text-[10px] text-text-muted">
+            <span className="border border-border-default px-2 py-1 rounded">{project.role}</span>
+            <span className="border border-border-default px-2 py-1 rounded">{project.period}</span>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="grid gap-8 px-8 py-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="space-y-6">
+            <div className="border border-border-subtle rounded-lg p-5 bg-base-800/50">
+              <div className="font-mono text-xs uppercase tracking-wider text-brand-400 mb-2">Context</div>
+              <p className="text-sm text-text-secondary">{project.summary}</p>
+            </div>
+            <div className="border border-border-subtle rounded-lg p-5 bg-base-800/50">
+              <div className="font-mono text-xs uppercase tracking-wider text-brand-400 mb-3">Responsibilities</div>
+              <div className="space-y-2">
+                {project.responsibilities.map((item) => (
+                  <div key={item} className="flex gap-2 text-sm text-text-secondary">
+                    <span className="w-1 h-1 rounded-full bg-brand-500 mt-2 flex-shrink-0" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="border border-border-subtle rounded-lg p-5 bg-base-800/50">
+              <div className="font-mono text-xs uppercase tracking-wider text-brand-400 mb-3">Decisions</div>
+              <div className="space-y-2 text-sm text-text-secondary">
+                {project.decisions.map((item) => <p key={item}>{item}</p>)}
+              </div>
             </div>
           </div>
-
-          <div className="grid gap-8 px-8 py-8 sm:px-12 sm:py-10 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="space-y-8">
-              <section className="rounded-[1.5rem] border border-white/10 bg-black/20 p-6">
-                <div className="mb-3 flex items-center gap-2 text-sm uppercase tracking-[0.24em] text-slate-400">
-                  <BriefcaseBusiness size={16} />
-                  Context
-                </div>
-                <p className="text-base leading-8 text-slate-200">{project.summary}</p>
-              </section>
-
-              <section className="grid gap-4 md:grid-cols-2">
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6">
-                  <h3 className="mb-4 text-lg font-semibold text-white">Responsibilities</h3>
-                  <ul className="space-y-3 text-sm leading-7 text-slate-300">
-                    {project.responsibilities.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-sky-300" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6">
-                  <h3 className="mb-4 text-lg font-semibold text-white">Challenges</h3>
-                  <ul className="space-y-3 text-sm leading-7 text-slate-300">
-                    {project.challenges.map((item) => (
-                      <li key={item} className="flex gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-300" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </section>
-
-              <section className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6">
-                <div className="mb-3 flex items-center gap-2 text-sm uppercase tracking-[0.24em] text-slate-400">
-                  <Target size={16} />
-                  Engineering decisions
-                </div>
-                <div className="space-y-4 text-sm leading-7 text-slate-300">
-                  {project.decisions.map((item) => (
-                    <p key={item}>{item}</p>
-                  ))}
-                </div>
-              </section>
-
-              <section className="rounded-[1.5rem] border border-white/10 bg-black/20 p-6">
-                <div className="mb-4 text-sm uppercase tracking-[0.24em] text-slate-400">Evidence panels</div>
-                <div className="grid gap-4">
-                  {project.evidencePanels.map((item) => (
-                    <div key={item.title} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-                      <div className="text-base font-semibold text-white">{item.title}</div>
-                      <p className="mt-2 text-sm leading-7 text-slate-300">{item.body}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
+          <div className="space-y-6">
+            <div className="border border-border-subtle rounded-lg p-5 bg-base-800/50">
+              <div className="font-mono text-xs uppercase tracking-wider text-brand-400 mb-3">Impact</div>
+              <div className="space-y-2">
+                {project.impact.map((item) => (
+                  <div key={item} className="flex gap-2 text-sm text-text-secondary">
+                    <span className="w-1 h-1 rounded-full bg-brand-500 mt-2 flex-shrink-0" />
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
-
-            <div className="space-y-6">
-              <section className="rounded-[1.5rem] border border-white/10 bg-slate-950/65 p-6">
-                <h3 className="mb-5 text-lg font-semibold text-white">Impact highlights</h3>
-                <div className="space-y-4">
-                  {project.impact.map((item) => (
-                    <div key={item} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4 text-sm leading-7 text-slate-300">
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              <section className="rounded-[1.5rem] border border-white/10 bg-slate-950/65 p-6">
-                <h3 className="mb-5 text-lg font-semibold text-white">Signal metrics</h3>
-                <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-                  {project.metrics.map((item) => (
-                    <div key={item.label} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-                      <div className="text-xl font-bold text-white">{item.value}</div>
-                      <div className="mt-1 text-xs uppercase tracking-[0.24em] text-slate-500">{item.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              <section className="rounded-[1.5rem] border border-white/10 bg-slate-950/65 p-6">
-                <h3 className="mb-4 text-lg font-semibold text-white">Project taxonomy</h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.taxonomy.map((item) => (
-                    <span key={item} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-sm text-slate-200">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </section>
-
-              <div className="grid gap-3">
-                <Link href={`/case-studies/${project.slug}`} className="primary-button w-full justify-center">
-                  Open full case study
-                  <ArrowUpRight size={18} />
+            <div className="border border-border-subtle rounded-lg p-5 bg-base-800/50">
+              <div className="font-mono text-xs uppercase tracking-wider text-brand-400 mb-3">Stack</div>
+              <div className="flex flex-wrap gap-2">
+                {project.stack.map((item) => (
+                  <span key={item} className="border border-border-default rounded px-2.5 py-1 font-mono text-xs text-text-secondary">{item}</span>
+                ))}
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <Link
+                href={`/case-studies/${project.slug}`}
+                className="inline-flex items-center gap-2 bg-brand-500 px-5 py-2.5 font-mono text-sm font-bold text-white hover:bg-brand-600 transition-colors duration-200 rounded-lg"
+              >
+                Full case study <ArrowUpRight size={14} />
+              </Link>
+              <a
+                href={project.contactHref}
+                className="inline-flex items-center gap-2 border border-border-default px-5 py-2.5 font-mono text-sm text-text-primary hover:border-text-primary transition-colors duration-200 rounded-lg"
+              >
+                Discuss
+              </a>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {prev ? (
+                <Link href={`/case-studies/${prev.slug}`} className="border border-border-subtle rounded-lg p-3 hover:border-brand-500/30 transition-colors duration-200">
+                  <div className="flex items-center gap-1 font-mono text-[10px] uppercase tracking-wider text-text-muted"><ArrowLeft size={10} /> Previous</div>
+                  <div className="mt-1 text-sm font-medium text-text-primary">{prev.title}</div>
                 </Link>
-                <a href={project.contactHref} className="secondary-button w-full justify-center">
-                  Discuss this project
-                </a>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                {previousProject ? (
-                  <Link href={`/case-studies/${previousProject.slug}`} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/20">
-                    <div className="flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-slate-500">
-                      <ArrowLeft size={14} />
-                      Previous
-                    </div>
-                    <div className="mt-2 text-sm font-semibold text-white">{previousProject.title}</div>
-                  </Link>
-                ) : (
-                  <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.02] p-4 text-sm text-slate-500">
-                    First featured case study
-                  </div>
-                )}
-                {nextProject ? (
-                  <Link href={`/case-studies/${nextProject.slug}`} className="rounded-[1.4rem] border border-white/10 bg-white/[0.03] p-4 text-right transition hover:border-white/20">
-                    <div className="flex items-center justify-end gap-2 text-xs uppercase tracking-[0.24em] text-slate-500">
-                      Next
-                      <ArrowRight size={14} />
-                    </div>
-                    <div className="mt-2 text-sm font-semibold text-white">{nextProject.title}</div>
-                  </Link>
-                ) : (
-                  <div className="rounded-[1.4rem] border border-white/10 bg-white/[0.02] p-4 text-right text-sm text-slate-500">
-                    Last featured case study
-                  </div>
-                )}
-              </div>
+              ) : <div />}
+              {next ? (
+                <Link href={`/case-studies/${next.slug}`} className="border border-border-subtle rounded-lg p-3 text-right hover:border-brand-500/30 transition-colors duration-200">
+                  <div className="flex items-center justify-end gap-1 font-mono text-[10px] uppercase tracking-wider text-text-muted">Next <ArrowRight size={10} /></div>
+                  <div className="mt-1 text-sm font-medium text-text-primary">{next.title}</div>
+                </Link>
+              ) : <div />}
             </div>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }

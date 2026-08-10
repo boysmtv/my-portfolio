@@ -4,9 +4,9 @@ type DividerProps = {
 };
 
 const variantStyles = {
-  subtle: 'border-white/5',
-  default: 'border-white/10',
-  accent: 'border-sky-400/20',
+  subtle: 'border-border-subtle',
+  default: 'border-border-default',
+  accent: 'border-brand-500/20',
 };
 
 export function Divider({ variant = 'default', className = '' }: DividerProps) {
